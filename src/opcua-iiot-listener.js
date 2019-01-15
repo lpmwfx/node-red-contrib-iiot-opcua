@@ -618,6 +618,15 @@ module.exports = function (RED) {
       }
     }
 
+    node.on('error', function (err) {
+      coreListener.internalDebugLog('Uncaught Exception:', err.message)
+      if (err.stack) {
+        coreListener.internalDebugLog(err.stack)
+      } else {
+        coreListener.internalDebugLog(err)
+      }
+    })
+
     node.on('close', function (done) {
       node.bianco.iiot.terminateSubscription(() => {
         node.bianco.iiot.opcuaSubscription = null

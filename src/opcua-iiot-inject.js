@@ -156,6 +156,15 @@ module.exports = function (RED) {
     } else {
       node.bianco.iiot.repeaterSetup()
     }
+
+    node.on('error', function (err) {
+      coreInject.internalDebugLog('Uncaught Exception:', err.message)
+      if (err.stack) {
+        coreInject.internalDebugLog(err.stack)
+      } else {
+        coreInject.internalDebugLog(err)
+      }
+    })
   }
 
   RED.nodes.registerType('OPCUA-IIoT-Inject', OPCUAIIoTInject)

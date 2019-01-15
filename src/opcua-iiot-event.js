@@ -86,6 +86,15 @@ module.exports = function (RED) {
 
       node.send(msg)
     })
+
+    node.on('error', function (err) {
+      coreListener.eventDebugLog('Uncaught Exception:', err.message)
+      if (err.stack) {
+        coreListener.eventDebugLog(err.stack)
+      } else {
+        coreListener.eventDebugLog(err)
+      }
+    })
   }
 
   RED.nodes.registerType('OPCUA-IIoT-Event', OPCUAIIoTEvent)

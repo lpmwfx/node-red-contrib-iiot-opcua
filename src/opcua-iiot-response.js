@@ -259,6 +259,15 @@ module.exports = function (RED) {
       }
     })
 
+    node.on('error', function (err) {
+      coreResponse.internalDebugLog('Uncaught Exception:', err.message)
+      if (err.stack) {
+        coreResponse.internalDebugLog(err.stack)
+      } else {
+        coreResponse.internalDebugLog(err)
+      }
+    })
+
     node.bianco.iiot.itemIsNotToFilter = function (item) {
       let result = coreResponse.core.checkItemForUnsetState(node, item)
 

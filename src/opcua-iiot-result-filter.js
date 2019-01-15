@@ -104,6 +104,15 @@ module.exports = function (RED) {
       node.send(message)
     })
 
+    node.on('error', function (err) {
+      coreFilter.internalDebugLog('Uncaught Exception:', err.message)
+      if (err.stack) {
+        coreFilter.internalDebugLog(err.stack)
+      } else {
+        coreFilter.internalDebugLog(err)
+      }
+    })
+
     node.bianco.iiot.filterByType = function (msg) {
       let result = null
       switch (msg.nodetype) {

@@ -129,6 +129,15 @@ module.exports = function (RED) {
 
     coreMethod.core.registerToConnector(node)
 
+    node.on('error', function (err) {
+      coreMethod.internalDebugLog('Uncaught Exception:', err.message)
+      if (err.stack) {
+        coreMethod.internalDebugLog(err.stack)
+      } else {
+        coreMethod.internalDebugLog(err)
+      }
+    })
+
     node.on('close', (done) => {
       coreMethod.core.deregisterToConnector(node, () => {
         coreMethod.core.resetBiancoNode(node)

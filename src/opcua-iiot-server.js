@@ -142,6 +142,15 @@ module.exports = function (RED) {
       }
     }
 
+    node.on('error', function (err) {
+      coreServer.internalDebugLog('Uncaught Exception:', err.message)
+      if (err.stack) {
+        coreServer.internalDebugLog(err.stack)
+      } else {
+        coreServer.internalDebugLog(err)
+      }
+    })
+
     node.on('close', (done) => {
       node.bianco.iiot.closeServer(() => {
         coreServer.internalDebugLog('Close Server Node')

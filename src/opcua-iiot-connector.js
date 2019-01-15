@@ -397,9 +397,18 @@ module.exports = function (RED) {
       }
     }
 
+    node.on('error', function (err) {
+      coreConnector.internalDebugLog('Uncaught Exception:', err.message)
+      if (err.stack) {
+        coreConnector.internalDebugLog(err.stack)
+      } else {
+        coreConnector.internalDebugLog(err)
+      }
+    })
+
     node.on('close', function (done) {
       if (!coreConnector.core.isInitializedBiancoIIoTNode(node)) {
-        done() // if we have a very fast deploy clicking uer
+        done() // if we have a very fast deploy clicking user
       } else {
         if (node.bianco.iiot.isInactiveOnOPCUA()) {
           coreConnector.detailDebugLog('OPC UA Client Is Not Active On Close Node')

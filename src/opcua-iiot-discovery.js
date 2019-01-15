@@ -45,6 +45,15 @@ module.exports = function (RED) {
       node.send(msg)
     })
 
+    node.on('error', function (err) {
+      coreDiscovery.internalDebugLog('Uncaught Exception:', err.message)
+      if (err.stack) {
+        coreDiscovery.internalDebugLog(err.stack)
+      } else {
+        coreDiscovery.internalDebugLog(err)
+      }
+    })
+
     node.on('close', function (done) {
       if (discoveryServer) {
         discoveryServer.shutdown(function () {

@@ -206,6 +206,15 @@ module.exports = function (RED) {
 
     coreBrowser.core.registerToConnector(node)
 
+    node.on('error', function (err) {
+      coreBrowser.internalDebugLog('Uncaught Exception:', err.message)
+      if (err.stack) {
+        coreBrowser.internalDebugLog(err.stack)
+      } else {
+        coreBrowser.internalDebugLog(err)
+      }
+    })
+
     node.on('close', (done) => {
       coreBrowser.core.deregisterToConnector(node, () => {
         coreBrowser.core.resetBiancoNode(node)
