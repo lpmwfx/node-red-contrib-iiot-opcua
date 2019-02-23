@@ -1,7 +1,7 @@
 /*
  The BSD 3-Clause License
 
- Copyright 2017,2018 - Klaus Landsdorf (http://bianco-royal.de/)
+ Copyright 2017,2018,2019 - Klaus Landsdorf (http://bianco-royal.de/)
  All rights reserved.
  node-red-contrib-iiot-opcua
  */
@@ -79,7 +79,7 @@ module.exports = function (RED) {
         message.methodType = data.msg.methodType
 
         for (result of data.results) {
-          outputArguments.push({statusCode: result.statusCode, outputArguments: result.outputArguments})
+          outputArguments.push({ statusCode: result.statusCode, outputArguments: result.outputArguments })
         }
 
         let dataValuesString = {}

@@ -1,7 +1,7 @@
 /*
  The BSD 3-Clause License
 
- Copyright 2016,2017,2018 - Klaus Landsdorf (http://bianco-royal.de/)
+ Copyright 2016,2017,2018,2019 - Klaus Landsdorf (http://bianco-royal.de/)
  Copyright 2015,2016 - Mika Karaila, Valmet Automation Inc. (node-red-contrib-opcua)
  All rights reserved.
  node-red-contrib-iiot-opcua
@@ -57,7 +57,7 @@ module.exports = function (RED) {
         node.bianco.iiot.createServer(serverOptions)
       } catch (err) {
         node.emit('server_create_error')
-        coreServer.handleServerError(node, err, {payload: 'Server Failure! Please, check the server settings!'})
+        coreServer.handleServerError(node, err, { payload: 'Server Failure! Please, check the server settings!' })
       }
     }
 
@@ -65,7 +65,7 @@ module.exports = function (RED) {
       coreServer.constructAddressSpace(node.bianco.iiot.opcuaServer, node.asoDemo)
         .then(function (err) {
           if (err) {
-            coreServer.handleServerError(node, err, {payload: 'Server Address Space Problem'})
+            coreServer.handleServerError(node, err, { payload: 'Server Address Space Problem' })
           } else {
             coreServer.start(node.bianco.iiot.opcuaServer, node)
               .then(function () {
@@ -77,11 +77,11 @@ module.exports = function (RED) {
                 }
                 node.emit('server_start_error')
                 coreServer.core.setNodeStatusTo(node, 'errors')
-                coreServer.handleServerError(node, err, {payload: 'Server Start Failure'})
+                coreServer.handleServerError(node, err, { payload: 'Server Start Failure' })
               })
           }
         }).catch(function (err) {
-          coreServer.handleServerError(node, err, {payload: 'Server Address Space Failure'})
+          coreServer.handleServerError(node, err, { payload: 'Server Address Space Failure' })
         })
     }
 
@@ -166,8 +166,15 @@ module.exports = function (RED) {
 
     node.bianco.iiot.closeServer = function (done) {
       coreServer.destructAddressSpace(() => {
-        node.bianco.iiot.opcuaServer.removeAllListeners()
-        node.bianco.iiot.opcuaServer.shutdown(node.delayToClose, done)
+        if (node.bianco.iiot.opcuaServer) {
+          node.bianco.iiot.opcuaServer.removeAllListeners()
+          node.bianco.iiot.opcuaServer.shutdown(node.delayToClose, () => {
+            coreServer.internalDebugLog('Server shutdown is done')
+            done()
+          })
+        } else {
+          setTimeout(node.delayToClose, done)
+        }
       })
     }
   }

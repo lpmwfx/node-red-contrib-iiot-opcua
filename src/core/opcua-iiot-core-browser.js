@@ -1,7 +1,7 @@
 /**
  The BSD 3-Clause License
 
- Copyright 2017,2018 - Klaus Landsdorf (http://bianco-royal.de/)
+ Copyright 2017,2018,2019 - Klaus Landsdorf (http://bianco-royal.de/)
  Copyright 2015,2016 - Mika Karaila, Valmet Automation Inc. (node-red-contrib-opcua)
  All rights reserved.
  node-red-contrib-iiot-opcua
@@ -16,7 +16,7 @@
  *
  * @Namesapce de.biancoroyal.opcua.iiot.core.browser
  */
-var de = de || {biancoroyal: {opcua: {iiot: {core: {browser: {crawler: {}}}}}}} // eslint-disable-line no-use-before-define
+var de = de || { biancoroyal: { opcua: { iiot: { core: { browser: { crawler: {} } } } } } } // eslint-disable-line no-use-before-define
 de.biancoroyal.opcua.iiot.core.browser.core = de.biancoroyal.opcua.iiot.core.browser.core || require('./opcua-iiot-core') // eslint-disable-line no-use-before-define
 de.biancoroyal.opcua.iiot.core.browser.internalDebugLog = de.biancoroyal.opcua.iiot.core.browser.internalDebugLog || require('debug')('opcuaIIoT:browser') // eslint-disable-line no-use-before-define
 de.biancoroyal.opcua.iiot.core.browser.detailDebugLog = de.biancoroyal.opcua.iiot.core.browser.detailDebugLog || require('debug')('opcuaIIoT:browser:details') // eslint-disable-line no-use-before-define

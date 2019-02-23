@@ -1,8 +1,9 @@
 /*
  The BSD 3-Clause License
 
- Copyright 2016,2017,2018 - Klaus Landsdorf (http://bianco-royal.de/)
+ Copyright 2016,2017,2018,2019 - Klaus Landsdorf (http://bianco-royal.de/)
  Copyright 2015,2016 - Mika Karaila, Valmet Automation Inc. (node-red-contrib-opcua)
+ Copyright JS Foundation and other contributors, http://js.foundation
  All rights reserved.
  node-red-contrib-iiot-opcua
  */
@@ -16,7 +17,7 @@
 module.exports = function (RED) {
   // SOURCE-MAP-REQUIRED
   let coreServer = require('./core/opcua-iiot-core-server')
-  const {VM} = require('vm2')
+  const { VM } = require('vm2')
   let scriptObjects = {}
 
   function OPCUAIIoTFlexServer (config) {
@@ -29,13 +30,112 @@ module.exports = function (RED) {
     node = coreServer.loadCertificates(node)
     coreServer.core.assert(node.bianco.iiot)
 
-    node.bianco.iiot.vm = new VM({
-      sandbox: {
-        node,
-        coreServer,
-        scriptObjects,
-        RED
+    this.outstandingTimers = []
+    this.outstandingIntervals = []
+
+    const sandbox = {
+      node,
+      console,
+      coreServer,
+      scriptObjects,
+      RED: {
+        util: RED.util
+      },
+      sandboxNodeContext: {
+        set: function () {
+          node.context().set.apply(node, arguments)
+        },
+        get: function () {
+          return node.context().get.apply(node, arguments)
+        },
+        keys: function () {
+          return node.context().keys.apply(node, arguments)
+        },
+        get global () {
+          return node.context().global
+        },
+        get flow () {
+          return node.context().flow
+        }
+      },
+      sandboxFlowContext: {
+        set: function () {
+          node.context().flow.set.apply(node, arguments)
+        },
+        get: function () {
+          return node.context().flow.get.apply(node, arguments)
+        },
+        keys: function () {
+          return node.context().flow.keys.apply(node, arguments)
+        }
+      },
+      sandboxGlobalContext: {
+        set: function () {
+          node.context().global.set.apply(node, arguments)
+        },
+        get: function () {
+          return node.context().global.get.apply(node, arguments)
+        },
+        keys: function () {
+          return node.context().global.keys.apply(node, arguments)
+        }
+      },
+      sandboxEnv: {
+        get: function (envVar) {
+          let flow = node._flow
+          return flow.getSetting(envVar)
+        }
+      },
+      setTimeout: function () {
+        let func = arguments[0]
+        let timerId
+        arguments[0] = function () {
+          sandbox.clearTimeout(timerId)
+          try {
+            func.apply(this, arguments)
+          } catch (err) {
+            node.error(err, {})
+          }
+        }
+        timerId = setTimeout.apply(this, arguments)
+        node.outstandingTimers.push(timerId)
+        return timerId
+      },
+      clearTimeout: function (id) {
+        clearTimeout(id)
+        let index = node.outstandingTimers.indexOf(id)
+        if (index > -1) {
+          node.outstandingTimers.splice(index, 1)
+        }
+      },
+      setInterval: function () {
+        let func = arguments[0]
+        let timerId
+        arguments[0] = function () {
+          try {
+            func.apply(this, arguments)
+          } catch (err) {
+            node.error(err, {})
+          }
+        }
+        timerId = setInterval.apply(this, arguments)
+        node.outstandingIntervals.push(timerId)
+        return timerId
+      },
+      clearInterval: function (id) {
+        clearInterval(id)
+        let index = node.outstandingIntervals.indexOf(id)
+        if (index > -1) {
+          node.outstandingIntervals.splice(index, 1)
+        }
       }
+    }
+
+    node.bianco.iiot.vm = new VM({
+      require: {
+        builtin: ['fs', 'Math', 'Date']
+      },
+      sandbox
     })
 
     node.bianco.iiot.constructAddressSpaceScript = function (server, constructAddressSpaceScript, eventObjects) {
@@ -74,7 +174,7 @@ module.exports = function (RED) {
       } catch (err) {
         node.emit('server_create_error')
         coreServer.flex.internalDebugLog(err.message)
-        coreServer.handleServerError(node, err, {payload: 'Flex Server Failure! Please, check the server settings!'})
+        coreServer.handleServerError(node, err, { payload: 'Flex Server Failure! Please, check the server settings!' })
       }
     }
 
@@ -88,10 +188,10 @@ module.exports = function (RED) {
           }).catch(function (err) {
             node.emit('server_start_error')
             coreServer.core.setNodeStatusTo(node, 'errors')
-            coreServer.handleServerError(node, err, {payload: 'Server Start Failure'})
+            coreServer.handleServerError(node, err, { payload: 'Server Start Failure' })
           })
         }).catch(function (err) {
-          coreServer.handleServerError(node, err, {payload: 'Server Address Space Failure'})
+          coreServer.handleServerError(node, err, { payload: 'Server Address Space Failure' })
         })
     }
 
@@ -160,9 +260,12 @@ module.exports = function (RED) {
 
       if (node.bianco.iiot.opcuaServer) {
         node.bianco.iiot.opcuaServer.removeAllListeners()
-        node.bianco.iiot.opcuaServer.shutdown(node.delayToClose, done)
+        node.bianco.iiot.opcuaServer.shutdown(node.delayToClose, () => {
+          coreServer.internalDebugLog('Server shutdown is done')
+          done()
+        })
       } else {
-        done()
+        setTimeout(node.delayToClose, done)
       }
     }
   }

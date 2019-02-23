@@ -1,7 +1,7 @@
 /*
  The BSD 3-Clause License
 
- Copyright 2017,2018 - Klaus Landsdorf (http://bianco-royal.de/)
+ Copyright 2017,2018,2019 - Klaus Landsdorf (http://bianco-royal.de/)
  All rights reserved.
  node-red-contrib-iiot-opcua
  */
@@ -39,7 +39,7 @@ module.exports = function (RED) {
     node.bianco = coreFilter.core.createBiancoIIoT()
     coreFilter.core.assert(node.bianco.iiot)
 
-    node.status({fill: 'blue', shape: 'ring', text: 'new'})
+    node.status({ fill: 'blue', shape: 'ring', text: 'new' })
 
     node.bianco.iiot.nodeIdToFilter = function (msg) {
       let doFilter = true
@@ -326,7 +326,7 @@ module.exports = function (RED) {
 
     node.bianco.iiot.convertDataType = function (result) {
       coreFilter.internalDebugLog('data type convert for ' + node.nodeId)
-      return coreFilter.core.convertDataValueByDataType({value: result}, node.datatype)
+      return coreFilter.core.convertDataValueByDataType({ value: result }, node.datatype)
     }
 
     if (node.withValueCheck) {
@@ -334,7 +334,7 @@ module.exports = function (RED) {
       node.maxvalue = node.bianco.iiot.convertDataType(node.maxvalue)
     }
 
-    node.status({fill: 'green', shape: 'dot', text: 'active'})
+    node.status({ fill: 'green', shape: 'dot', text: 'active' })
   }
 
   RED.nodes.registerType('OPCUA-IIoT-Result-Filter', OPCUAIIoTResultFilter)

@@ -1,7 +1,7 @@
 <!--
  The BSD 3-Clause License
 
- Copyright 2016,2017,2018 - Klaus Landsdorf (http://bianco-royal.de/)
+ Copyright 2016,2017,2018,2019 - Klaus Landsdorf (http://bianco-royal.de/)
  Copyright 2015,2016 - Mika Karaila, Valmet Automation Inc. (node-red-contrib-opcua)
  All rights reserved.
  node-red-contrib-iiot-opcua
@@ -314,10 +314,10 @@
 
       // Certificate Management
       try {
-        let certsCheckbox = $("#node-config-input-individualCerts");
+        let certsCheckbox = $("#node-input-individualCerts");
         let configCertFields = $("#node-config-certFiles");
 
-        if (this.individualCerts) {
+        if (node.individualCerts) {
           certsCheckbox.prop('checked', true);
           configCertFields.show();
         } else {
@@ -474,7 +474,7 @@
                 <label style="min-width:240px">
                     <i class="fa fa-file"></i>
                     <span data-i18n="opcua-iiot-contrib.label.individualCerts"></span>
-                    <input type="checkbox" id="node-config-input-individualCerts" style="max-width:30px">
+                    <input type="checkbox" id="node-input-individualCerts" style="max-width:30px">
                 </label>
             </div>
             <div id="node-config-certFiles">
@@ -487,7 +487,7 @@
                 <div class="form-row">
                     <label for="node-input-privateCertificateFile"><i class="fa fa-file"></i>
                     <span data-i18n="opcua-iiot-contrib.label.privateCertificateFile"></span></label>
-                    <input type="text" id="node-input-privateCertificateFile" placeholder="./certificates/PKI/own/private/private_key.pem" style="min-width:480px">
+                    <input type="text" id="node-input-privateCertificateFile" placeholder="./certificates/server_key_2048.pem" style="min-width:480px">
                 </div>
                 <hr>
             </div>

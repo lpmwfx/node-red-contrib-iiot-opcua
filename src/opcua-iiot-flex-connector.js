@@ -1,7 +1,7 @@
 /*
  The BSD 3-Clause License
 
- Copyright 2018 - Klaus Landsdorf (http://bianco-royal.de/)
+ Copyright 2018,2019 - Klaus Landsdorf (http://bianco-royal.de/)
  All rights reserved.
  node-red-contrib-iiot-opcua
  */
@@ -27,7 +27,7 @@ module.exports = function (RED) {
     node.bianco = coreConnector.core.createBiancoIIoT()
     coreConnector.core.assert(node.bianco.iiot)
 
-    node.status({fill: 'blue', shape: 'ring', text: 'new'})
+    node.status({ fill: 'blue', shape: 'ring', text: 'new' })
 
     node.on('input', function (msg) {
       coreConnector.internalDebugLog('connector change request input')

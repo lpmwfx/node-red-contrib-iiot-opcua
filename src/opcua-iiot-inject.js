@@ -1,7 +1,7 @@
 /**
  The BSD 3-Clause License
 
- Copyright 2016,2017,2018 - Klaus Landsdorf (http://bianco-royal.de/)
+ Copyright 2016,2017,2018,2019 - Klaus Landsdorf (http://bianco-royal.de/)
  Copyright 2013, 2016 IBM Corp. (node-red)
  All rights reserved.
  node-red-contrib-iiot-opcua
@@ -189,7 +189,7 @@ module.exports = function (RED) {
         res.sendStatus(200)
       } catch (err) {
         res.sendStatus(500)
-        node.error(RED._('opcuaiiotinject.failed', {error: err.toString()}))
+        node.error(RED._('opcuaiiotinject.failed', { error: err.toString() }))
       }
     } else {
       res.sendStatus(404)

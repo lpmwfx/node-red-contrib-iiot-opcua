@@ -1,7 +1,7 @@
 /*
  The BSD 3-Clause License
 
- Copyright 2017,2018 - Klaus Landsdorf (http://bianco-royal.de/)
+ Copyright 2017,2018,2019 - Klaus Landsdorf (http://bianco-royal.de/)
  All rights reserved.
  node-red-contrib-iiot-opcua
  */
@@ -31,7 +31,7 @@ module.exports = function (RED) {
     node.bianco = coreResponse.core.createBiancoIIoT()
     coreResponse.core.assert(node.bianco.iiot)
 
-    node.status({fill: 'green', shape: 'ring', text: 'active'})
+    node.status({ fill: 'green', shape: 'ring', text: 'active' })
 
     node.bianco.iiot.handleBrowserMsg = function (msg) {
       coreResponse.analyzeBrowserResults(node, msg)

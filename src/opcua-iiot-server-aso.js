@@ -1,7 +1,7 @@
 /*
  The BSD 3-Clause License
 
- Copyright 2017,2018 - Klaus Landsdorf (http://bianco-royal.de/)
+ Copyright 2017,2018,2019 - Klaus Landsdorf (http://bianco-royal.de/)
  All rights reserved.
  node-red-contrib-iiot-opcua
  */
@@ -40,7 +40,7 @@ module.exports = function (RED) {
         node.value = msg.payload || node.value
       }
 
-      msg = {payload: {}} // clean message
+      msg = { payload: {} } // clean message
       msg.topic = 'ServerAddressSpaceObject'
       msg.nodetype = 'inject'
       msg.injectType = 'ASO'
