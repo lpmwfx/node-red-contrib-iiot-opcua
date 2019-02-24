@@ -94,11 +94,10 @@ describe('OPC UA Core Listener', function () {
 
     it('should return collected alarm fields with value.text', function (done) {
       let allFields = coreListener.getBasicEventFields().concat(coreListener.getAllEventFields())
-      let field = null
-      let sut = null
+      let field, sut
 
       for (field of allFields) {
-        sut = coreListener.collectAlarmFields(field, 'key', {text: 'Hello World!'})
+        sut = coreListener.collectAlarmFields(field, 'key', { text: 'Hello World!' })
         expect(sut).to.be.an('object').that.has.property('field', field)
         expect(sut).to.be.an('object').that.has.property('dataType', 'key')
         expect(sut.value).to.be.an('object').that.has.property('text', 'Hello World!')

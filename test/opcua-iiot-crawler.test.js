@@ -12,16 +12,16 @@
 
 jest.setTimeout(5000)
 
-var injectNode = require('node-red/nodes/core/core/20-inject')
-var functionNode = require('node-red/nodes/core/core/80-function')
-var inputNode = require('../src/opcua-iiot-crawler')
+const injectNode = require('node-red/nodes/core/core/20-inject')
+const functionNode = require('node-red/nodes/core/core/80-function')
+const inputNode = require('../src/opcua-iiot-crawler')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var crawlerNodesToLoad = [injectNode, functionNode, inputNode]
+const crawlerNodesToLoad = [injectNode, functionNode, inputNode]
 
-var crawlerUnitFlow = [
+let crawlerUnitFlow = [
   {
     'id': '13e5e190.e34516',
     'type': 'OPCUA-IIoT-Crawler',

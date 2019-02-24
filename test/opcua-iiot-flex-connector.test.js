@@ -12,9 +12,9 @@
 
 jest.setTimeout(5000)
 
-var inputNode = require('../src/opcua-iiot-flex-connector')
+const inputNode = require('../src/opcua-iiot-flex-connector')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
 describe('OPC UA Flex Connector node Unit Testing', function () {

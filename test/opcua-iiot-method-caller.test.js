@@ -13,16 +13,16 @@
 jest.setTimeout(5000)
 
 // opcua iiot
-var injectNode = require('node-red/nodes/core/core/20-inject')
-var functionNode = require('node-red/nodes/core/core/80-function')
-var inputNode = require('../src/opcua-iiot-method-caller')
+const injectNode = require('node-red/nodes/core/core/20-inject')
+const functionNode = require('node-red/nodes/core/core/80-function')
+const inputNode = require('../src/opcua-iiot-method-caller')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var methodCallerNodesToLoad = [injectNode, functionNode, inputNode]
+const methodCallerNodesToLoad = [injectNode, functionNode, inputNode]
 
-var methodUnitFlow = [
+let methodUnitFlow = [
   {
     'id': '706d43c1.90baac',
     'type': 'OPCUA-IIoT-Method-Caller',
@@ -51,7 +51,7 @@ var methodUnitFlow = [
   }
 ]
 
-var methodNotConfiguredUnitFlow = [
+let methodNotConfiguredUnitFlow = [
   {
     'id': '706d43c1.90babc',
     'type': 'OPCUA-IIoT-Method-Caller',
@@ -119,7 +119,7 @@ describe('OPC UA Method Caller node Unit Testing', function () {
       helper.load(methodCallerNodesToLoad, methodUnitFlow, () => {
         let n1 = helper.getNode('706d43c1.90baac')
         expect(n1).toBeDefined()
-        n1.bianco.iiot.handleMethodError(new Error('Testing Error To Handle'), {payload: {}})
+        n1.bianco.iiot.handleMethodError(new Error('Testing Error To Handle'), { payload: {} })
         done()
       })
     })
@@ -128,7 +128,7 @@ describe('OPC UA Method Caller node Unit Testing', function () {
       helper.load(methodCallerNodesToLoad, methodUnitFlow, () => {
         let n1 = helper.getNode('706d43c1.90baac')
         expect(n1).toBeDefined()
-        n1.receive({payload: { objectId: 1 }})
+        n1.receive({ payload: { objectId: 1 } })
         done()
       })
     })
@@ -137,7 +137,7 @@ describe('OPC UA Method Caller node Unit Testing', function () {
       helper.load(methodCallerNodesToLoad, methodUnitFlow, () => {
         let n1 = helper.getNode('706d43c1.90baac')
         expect(n1).toBeDefined()
-        n1.receive({payload: { objectId: 1, methodId: 1 }})
+        n1.receive({ payload: { objectId: 1, methodId: 1 } })
         done()
       })
     })
@@ -146,7 +146,7 @@ describe('OPC UA Method Caller node Unit Testing', function () {
       helper.load(methodCallerNodesToLoad, methodUnitFlow, () => {
         let n1 = helper.getNode('706d43c1.90baac')
         expect(n1).toBeDefined()
-        n1.receive({payload: { objectId: 1, methodId: 1, inputArguments: [] }})
+        n1.receive({ payload: { objectId: 1, methodId: 1, inputArguments: [] } })
         done()
       })
     })
@@ -155,7 +155,7 @@ describe('OPC UA Method Caller node Unit Testing', function () {
       helper.load(methodCallerNodesToLoad, methodUnitFlow, () => {
         let n1 = helper.getNode('706d43c1.90baac')
         expect(n1).toBeDefined()
-        n1.receive({payload: {}})
+        n1.receive({ payload: {} })
         done()
       })
     })
@@ -164,7 +164,7 @@ describe('OPC UA Method Caller node Unit Testing', function () {
       helper.load(methodCallerNodesToLoad, methodNotConfiguredUnitFlow, () => {
         let n1 = helper.getNode('706d43c1.90babc')
         expect(n1).toBeDefined()
-        n1.bianco.iiot.handleMethodError(new Error('Testing Error To Handle'), {payload: {}})
+        n1.bianco.iiot.handleMethodError(new Error('Testing Error To Handle'), { payload: {} })
         done()
       })
     })
@@ -173,7 +173,7 @@ describe('OPC UA Method Caller node Unit Testing', function () {
       helper.load(methodCallerNodesToLoad, methodNotConfiguredUnitFlow, () => {
         let n1 = helper.getNode('706d43c1.90babc')
         expect(n1).toBeDefined()
-        n1.receive({payload: { objectId: 1 }})
+        n1.receive({ payload: { objectId: 1 } })
         done()
       })
     })
@@ -182,7 +182,7 @@ describe('OPC UA Method Caller node Unit Testing', function () {
       helper.load(methodCallerNodesToLoad, methodNotConfiguredUnitFlow, () => {
         let n1 = helper.getNode('706d43c1.90babc')
         expect(n1).toBeDefined()
-        n1.receive({payload: {}, objectId: 1, methodId: 1})
+        n1.receive({ payload: {}, objectId: 1, methodId: 1 })
         done()
       })
     })
@@ -191,7 +191,7 @@ describe('OPC UA Method Caller node Unit Testing', function () {
       helper.load(methodCallerNodesToLoad, methodNotConfiguredUnitFlow, () => {
         let n1 = helper.getNode('706d43c1.90babc')
         expect(n1).toBeDefined()
-        n1.receive({payload: { objectId: 1, methodId: 1, inputArguments: [] }})
+        n1.receive({ payload: { objectId: 1, methodId: 1, inputArguments: [] } })
         done()
       })
     })
@@ -200,7 +200,7 @@ describe('OPC UA Method Caller node Unit Testing', function () {
       helper.load(methodCallerNodesToLoad, methodNotConfiguredUnitFlow, () => {
         let n1 = helper.getNode('706d43c1.90babc')
         expect(n1).toBeDefined()
-        n1.receive({payload: {}})
+        n1.receive({ payload: {} })
         done()
       })
     })

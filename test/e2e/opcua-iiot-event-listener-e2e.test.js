@@ -13,19 +13,19 @@
 jest.setTimeout(60000)
 
 // iiot opc ua nodes
-var injectNode = require('../../src/opcua-iiot-inject')
-var eventNode = require('../../src/opcua-iiot-event')
-var responseNode = require('../../src/opcua-iiot-response')
-var serverNode = require('../../src/opcua-iiot-server')
-var connectorNode = require('../../src/opcua-iiot-connector')
-var inputNode = require('../../src/opcua-iiot-listener')
+const injectNode = require('../../src/opcua-iiot-inject')
+const eventNode = require('../../src/opcua-iiot-event')
+const responseNode = require('../../src/opcua-iiot-response')
+const serverNode = require('../../src/opcua-iiot-server')
+const connectorNode = require('../../src/opcua-iiot-connector')
+const inputNode = require('../../src/opcua-iiot-listener')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var eventNodesToLoad = [injectNode, eventNode, connectorNode, inputNode, serverNode, responseNode]
+const eventNodesToLoad = [injectNode, eventNode, connectorNode, inputNode, serverNode, responseNode]
 
-var testListenerEventFlow = [
+let testListenerEventFlow = [
   {
     'id': 'n1ev',
     'type': 'OPCUA-IIoT-Inject',
@@ -76,7 +76,7 @@ var testListenerEventFlow = [
       ]
     ]
   },
-  {id: 'n2ev', type: 'helper'},
+  { id: 'n2ev', type: 'helper' },
   {
     'id': 'n3ev',
     'type': 'OPCUA-IIoT-Event',
@@ -93,7 +93,7 @@ var testListenerEventFlow = [
       ]
     ]
   },
-  {id: 'n4ev', type: 'helper'},
+  { id: 'n4ev', type: 'helper' },
   {
     'id': 'n5ev',
     'type': 'OPCUA-IIoT-Listener',
@@ -110,7 +110,7 @@ var testListenerEventFlow = [
       ]
     ]
   },
-  {id: 'n6ev', type: 'helper'},
+  { id: 'n6ev', type: 'helper' },
   {
     'id': 'c1ev',
     'type': 'OPCUA-IIoT-Connector',
@@ -161,7 +161,7 @@ var testListenerEventFlow = [
   }
 ]
 
-var listenToEventsOnServer = [
+let listenToEventsOnServer = [
   {
     'id': 'c4107b6c.885328',
     'type': 'OPCUA-IIoT-Inject',
@@ -229,7 +229,7 @@ var listenToEventsOnServer = [
       ]
     ]
   },
-  {id: 'nh1ev', type: 'helper'},
+  { id: 'nh1ev', type: 'helper' },
   {
     'id': '4de0c979.b3757',
     'type': 'OPCUA-IIoT-Connector',
@@ -275,7 +275,7 @@ var listenToEventsOnServer = [
   }
 ]
 
-var listenToEventsWithResponseOnServer = [
+let listenToEventsWithResponseOnServer = [
   {
     'id': 'c4107b6c.885322',
     'type': 'OPCUA-IIoT-Inject',
@@ -343,7 +343,7 @@ var listenToEventsWithResponseOnServer = [
       ]
     ]
   },
-  {id: 'nh1evf2', type: 'helper'},
+  { id: 'nh1evf2', type: 'helper' },
   {
     'id': 'nh2evf2',
     'type': 'OPCUA-IIoT-Response',
@@ -359,7 +359,7 @@ var listenToEventsWithResponseOnServer = [
       ]
     ]
   },
-  {id: 'nh3evf2', type: 'helper'},
+  { id: 'nh3evf2', type: 'helper' },
   {
     'id': 'nh21evf2',
     'type': 'OPCUA-IIoT-Response',
@@ -375,7 +375,7 @@ var listenToEventsWithResponseOnServer = [
       ]
     ]
   },
-  {id: 'nh31evf2', type: 'helper'},
+  { id: 'nh31evf2', type: 'helper' },
   {
     'id': 'nhcf2',
     'type': 'OPCUA-IIoT-Connector',

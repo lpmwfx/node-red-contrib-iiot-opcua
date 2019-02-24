@@ -12,23 +12,23 @@
 
 jest.setTimeout(5000)
 
-var injectNode = require('node-red/nodes/core/core/20-inject')
-var inputNode = require('../src/opcua-iiot-discovery')
+const injectNode = require('node-red/nodes/core/core/20-inject')
+const inputNode = require('../src/opcua-iiot-discovery')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var testDiscoveryFlow = [
+let testDiscoveryFlow = [
   {
     'id': 'n1dsf1',
     'type': 'OPCUA-IIoT-Discovery',
     'name': 'TestName',
     'wires': [['n2dsf1']]
   },
-  {id: 'n2dsf1', type: 'helper'}
+  { id: 'n2dsf1', type: 'helper' }
 ]
 
-var testDiscoveryNullPortFlow = [
+let testDiscoveryNullPortFlow = [
   {
     'id': 'n1dsf2',
     'type': 'OPCUA-IIoT-Discovery',
@@ -36,10 +36,10 @@ var testDiscoveryNullPortFlow = [
     'discoveryPort': null,
     'wires': [['n2dsf1']]
   },
-  {id: 'n2dsf1', type: 'helper'}
+  { id: 'n2dsf1', type: 'helper' }
 ]
 
-var testDiscoveryNullPortAndInjectFlow = [
+let testDiscoveryNullPortAndInjectFlow = [
   {
     'id': 'n1edf1',
     'type': 'inject',
@@ -51,7 +51,7 @@ var testDiscoveryNullPortAndInjectFlow = [
     'once': true,
     'wires': [['n2edf1', 'n3edf1']]
   },
-  {id: 'n2edf1', type: 'helper'},
+  { id: 'n2edf1', type: 'helper' },
   {
     'id': 'n3edf1',
     'type': 'OPCUA-IIoT-Discovery',
@@ -59,7 +59,7 @@ var testDiscoveryNullPortAndInjectFlow = [
     'discoveryPort': null,
     'wires': [['n4edf1']]
   },
-  {id: 'n4edf1', type: 'helper'}
+  { id: 'n4edf1', type: 'helper' }
 ]
 
 describe('OPC UA Discovery node Unit Testing', function () {

@@ -12,16 +12,16 @@
 
 jest.setTimeout(10000)
 
-var injectNode = require('node-red/nodes/core/core/20-inject')
-var injectOPCUANode = require('../../src/opcua-iiot-inject')
-var inputNode = require('../../src/opcua-iiot-server-cmd')
-var serverNode = require('../../src/opcua-iiot-server')
-var flexServerNode = require('../../src/opcua-iiot-flex-server')
+const injectNode = require('node-red/nodes/core/core/20-inject')
+const injectOPCUANode = require('../../src/opcua-iiot-inject')
+const inputNode = require('../../src/opcua-iiot-server-cmd')
+const serverNode = require('../../src/opcua-iiot-server')
+const flexServerNode = require('../../src/opcua-iiot-flex-server')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var testCMDFlow = [
+let testCMDFlow = [
   {
     'id': 'n1cmdf1',
     'type': 'inject',
@@ -32,7 +32,7 @@ var testCMDFlow = [
     'once': true,
     'wires': [['n2cmdf1', 'n3cmdf1', 'n4cmdf1']]
   },
-  {id: 'n2cmdf1', type: 'helper'},
+  { id: 'n2cmdf1', type: 'helper' },
   {
     'id': 'n3cmdf1',
     'type': 'OPCUA-IIoT-Server-Command',
@@ -53,11 +53,11 @@ var testCMDFlow = [
       ['n6cmdf1']
     ]
   },
-  {id: 'n5cmdf1', type: 'helper'},
-  {id: 'n6cmdf1', type: 'helper'}
+  { id: 'n5cmdf1', type: 'helper' },
+  { id: 'n6cmdf1', type: 'helper' }
 ]
 
-var testCMDWithServerFlow = [
+let testCMDWithServerFlow = [
   {
     'id': 'n1csf1',
     'type': 'inject',
@@ -69,7 +69,7 @@ var testCMDWithServerFlow = [
     'onceDelay': '4',
     'wires': [['n2csf1', 'n3csf1']]
   },
-  {id: 'n2csf1', type: 'helper'},
+  { id: 'n2csf1', type: 'helper' },
   {
     'id': 'n3csf1',
     'type': 'OPCUA-IIoT-Server-Command',
@@ -80,7 +80,7 @@ var testCMDWithServerFlow = [
       ['n4csf1', 's1csr']
     ]
   },
-  {id: 'n4csf1', type: 'helper'},
+  { id: 'n4csf1', type: 'helper' },
   {
     'id': 's1csr',
     'type': 'OPCUA-IIoT-Server',
@@ -106,10 +106,10 @@ var testCMDWithServerFlow = [
     'maxNodesPerBrowse': 2000,
     'wires': [['n5csf1']]
   },
-  {id: 'n5csf1', type: 'helper'}
+  { id: 'n5csf1', type: 'helper' }
 ]
 
-var testInjectCMDFlow = [
+let testInjectCMDFlow = [
   {
     'id': 'n1cmdf2',
     'type': 'OPCUA-IIoT-Inject',
@@ -131,7 +131,7 @@ var testInjectCMDFlow = [
     ],
     'wires': [['n2cmdf2', 'n3cmdf2']]
   },
-  {id: 'n2cmdf2', type: 'helper'},
+  { id: 'n2cmdf2', type: 'helper' },
   {
     'id': 'n3cmdf2',
     'type': 'OPCUA-IIoT-Server-Command',
@@ -142,7 +142,7 @@ var testInjectCMDFlow = [
       ['n4cmdf2', 's1cf5']
     ]
   },
-  {id: 'n4cmdf2', type: 'helper'},
+  { id: 'n4cmdf2', type: 'helper' },
   {
     'id': 's1cf5',
     'type': 'OPCUA-IIoT-Server',
@@ -168,10 +168,10 @@ var testInjectCMDFlow = [
     'maxNodesPerBrowse': 2000,
     'wires': [['n5cmdf2']]
   },
-  {id: 'n5cmdf2', type: 'helper'}
+  { id: 'n5cmdf2', type: 'helper' }
 ]
 
-var testCMDWithFlexServerFlow = [
+let testCMDWithFlexServerFlow = [
   {
     'id': 'n1csf3',
     'type': 'inject',
@@ -183,7 +183,7 @@ var testCMDWithFlexServerFlow = [
     'onceDelay': '4',
     'wires': [['n2csf3', 'n3csf3']]
   },
-  {id: 'n2csf3', type: 'helper'},
+  { id: 'n2csf3', type: 'helper' },
   {
     'id': 'n3csf3',
     'type': 'OPCUA-IIoT-Server-Command',
@@ -194,7 +194,7 @@ var testCMDWithFlexServerFlow = [
       ['n4csf3', 's3csfr']
     ]
   },
-  {id: 'n4csf3', type: 'helper'},
+  { id: 'n4csf3', type: 'helper' },
   {
     'id': 's3csfr',
     'type': 'OPCUA-IIoT-Flex-Server',
@@ -226,10 +226,10 @@ var testCMDWithFlexServerFlow = [
       ['n5csf3']
     ]
   },
-  {id: 'n5csf3', type: 'helper'}
+  { id: 'n5csf3', type: 'helper' }
 ]
 
-var testWrongCMDWithFlexServerFlow = [
+let testWrongCMDWithFlexServerFlow = [
   {
     'id': 'n1csf4',
     'type': 'inject',
@@ -241,7 +241,7 @@ var testWrongCMDWithFlexServerFlow = [
     'onceDelay': '3',
     'wires': [['n2csf4', 'n3csf4']]
   },
-  {id: 'n2csf4', type: 'helper'},
+  { id: 'n2csf4', type: 'helper' },
   {
     'id': 'n3csf4',
     'type': 'OPCUA-IIoT-Server-Command',
@@ -252,7 +252,7 @@ var testWrongCMDWithFlexServerFlow = [
       ['n4csf4', 's4csfr']
     ]
   },
-  {id: 'n4csf4', type: 'helper'},
+  { id: 'n4csf4', type: 'helper' },
   {
     'id': 's4csfr',
     'type': 'OPCUA-IIoT-Flex-Server',
@@ -284,10 +284,10 @@ var testWrongCMDWithFlexServerFlow = [
       ['n5csf4']
     ]
   },
-  {id: 'n5csf4', type: 'helper'}
+  { id: 'n5csf4', type: 'helper' }
 ]
 
-var testWrongInjectWithFlexServerFlow = [
+let testWrongInjectWithFlexServerFlow = [
   {
     'id': 'n1csf5',
     'type': 'inject',
@@ -302,7 +302,7 @@ var testWrongInjectWithFlexServerFlow = [
     'injecType': 'TEST',
     'wires': [['n2csf5', 's5csfr']]
   },
-  {id: 'n2csf5', type: 'helper'},
+  { id: 'n2csf5', type: 'helper' },
   {
     'id': 's5csfr',
     'type': 'OPCUA-IIoT-Flex-Server',
@@ -334,7 +334,7 @@ var testWrongInjectWithFlexServerFlow = [
       ['n5csf4']
     ]
   },
-  {id: 'n5csf4', type: 'helper'}
+  { id: 'n5csf4', type: 'helper' }
 ]
 
 describe('OPC UA Server Command node e2e Testing', function () {

@@ -12,21 +12,21 @@
 
 jest.setTimeout(300000)
 
-var injectNode = require('../../src/opcua-iiot-inject')
-var connectorNode = require('../../src/opcua-iiot-connector')
-var inputNode = require('../../src/opcua-iiot-browser')
-var listenerNode = require('../../src/opcua-iiot-listener')
-var asoNode = require('../../src/opcua-iiot-server-aso')
-var serverNode = require('../../src/opcua-iiot-server')
-var responseNode = require('../../src/opcua-iiot-response')
-var resultFilterNode = require('../../src/opcua-iiot-result-filter')
+const injectNode = require('../../src/opcua-iiot-inject')
+const connectorNode = require('../../src/opcua-iiot-connector')
+const inputNode = require('../../src/opcua-iiot-browser')
+const listenerNode = require('../../src/opcua-iiot-listener')
+const asoNode = require('../../src/opcua-iiot-server-aso')
+const serverNode = require('../../src/opcua-iiot-server')
+const responseNode = require('../../src/opcua-iiot-response')
+const resultFilterNode = require('../../src/opcua-iiot-result-filter')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var browseRecursiveNodesToLoad = [injectNode, asoNode, listenerNode, connectorNode, resultFilterNode, inputNode, serverNode, responseNode]
+const browseRecursiveNodesToLoad = [injectNode, asoNode, listenerNode, connectorNode, resultFilterNode, inputNode, serverNode, responseNode]
 
-var testBrowseRecursiveASOFlow = [
+let testBrowseRecursiveASOFlow = [
   {
     'id': '58eb5d7c.b3cd24',
     'type': 'OPCUA-IIoT-Server-ASO',
@@ -475,7 +475,7 @@ var testBrowseRecursiveASOFlow = [
       ]
     ]
   },
-  {id: 'n1f1', type: 'helper'},
+  { id: 'n1f1', type: 'helper' },
   {
     'id': 'c8abf139.f829a',
     'type': 'OPCUA-IIoT-Connector',

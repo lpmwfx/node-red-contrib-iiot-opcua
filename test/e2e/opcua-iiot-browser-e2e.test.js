@@ -12,19 +12,19 @@
 
 jest.setTimeout(20000)
 
-var injectNode = require('../../src/opcua-iiot-inject')
-var connectorNode = require('../../src/opcua-iiot-connector')
-var inputNode = require('../../src/opcua-iiot-browser')
-var serverNode = require('../../src/opcua-iiot-server')
-var responseNode = require('../../src/opcua-iiot-response')
-var resultFilterNode = require('../../src/opcua-iiot-result-filter')
+const injectNode = require('../../src/opcua-iiot-inject')
+const connectorNode = require('../../src/opcua-iiot-connector')
+const inputNode = require('../../src/opcua-iiot-browser')
+const serverNode = require('../../src/opcua-iiot-server')
+const responseNode = require('../../src/opcua-iiot-response')
+const resultFilterNode = require('../../src/opcua-iiot-result-filter')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var browseNodesToLoad = [injectNode, connectorNode, resultFilterNode, inputNode, serverNode, responseNode]
+const browseNodesToLoad = [injectNode, connectorNode, resultFilterNode, inputNode, serverNode, responseNode]
 
-var testBrowseFlow = [
+let testBrowseFlow = [
   {
     'id': 'n1f1',
     'type': 'OPCUA-IIoT-Inject',
@@ -40,7 +40,7 @@ var testBrowseFlow = [
     'addressSpaceItems': [],
     'wires': [['n2f1', 'n3f1']]
   },
-  {id: 'n2f1', type: 'helper'},
+  { id: 'n2f1', type: 'helper' },
   {
     'id': 'n3f1',
     'type': 'OPCUA-IIoT-Browser',
@@ -82,7 +82,7 @@ var testBrowseFlow = [
       ]
     ]
   },
-  {id: 'n21rf1', type: 'helper'},
+  { id: 'n21rf1', type: 'helper' },
   {
     'id': 'n4rf1',
     'type': 'OPCUA-IIoT-Response',
@@ -92,7 +92,7 @@ var testBrowseFlow = [
     'showErrors': false,
     'wires': [['n3rf1']]
   },
-  {id: 'n3rf1', type: 'helper'},
+  { id: 'n3rf1', type: 'helper' },
   {
     'id': 'c1f1',
     'type': 'OPCUA-IIoT-Connector',
@@ -114,7 +114,7 @@ var testBrowseFlow = [
     'strategyMaxDelay': '',
     'strategyRandomisationFactor': ''
   },
-  {id: 'n5f1', type: 'helper'},
+  { id: 'n5f1', type: 'helper' },
   {
     'id': 's1f1',
     'type': 'OPCUA-IIoT-Server',
@@ -142,7 +142,7 @@ var testBrowseFlow = [
   }
 ]
 
-var testBrowseLevelsFlow = [
+let testBrowseLevelsFlow = [
   {
     'id': 'n1f2',
     'type': 'OPCUA-IIoT-Inject',
@@ -158,7 +158,7 @@ var testBrowseLevelsFlow = [
     'addressSpaceItems': [],
     'wires': [['n2f2', 'n3f2']]
   },
-  {id: 'n2f2', type: 'helper'},
+  { id: 'n2f2', type: 'helper' },
   {
     'id': 'n3f2',
     'type': 'OPCUA-IIoT-Browser',
@@ -176,7 +176,7 @@ var testBrowseLevelsFlow = [
     'showErrors': false,
     'wires': [['n4f2', 'n5f2']]
   },
-  {id: 'n4f2', type: 'helper'},
+  { id: 'n4f2', type: 'helper' },
   {
     'id': 'n5f2',
     'type': 'OPCUA-IIoT-Browser',
@@ -215,7 +215,7 @@ var testBrowseLevelsFlow = [
     'strategyMaxDelay': '',
     'strategyRandomisationFactor': ''
   },
-  {id: 'n6f2', type: 'helper'},
+  { id: 'n6f2', type: 'helper' },
   {
     'id': 's1f2',
     'type': 'OPCUA-IIoT-Server',
@@ -244,7 +244,7 @@ var testBrowseLevelsFlow = [
   }
 ]
 
-var testBrowseItemFlow = [
+let testBrowseItemFlow = [
   {
     'id': 'n1f3',
     'type': 'OPCUA-IIoT-Inject',
@@ -266,7 +266,7 @@ var testBrowseItemFlow = [
     ],
     'wires': [['n2f3', 'n3f3']]
   },
-  {id: 'n2f3', type: 'helper'},
+  { id: 'n2f3', type: 'helper' },
   {
     'id': 'n3f3',
     'type': 'OPCUA-IIoT-Browser',
@@ -305,7 +305,7 @@ var testBrowseItemFlow = [
     'strategyMaxDelay': '',
     'strategyRandomisationFactor': ''
   },
-  {id: 'n5f3', type: 'helper'},
+  { id: 'n5f3', type: 'helper' },
   {
     'id': 's1f3',
     'type': 'OPCUA-IIoT-Server',
@@ -333,7 +333,7 @@ var testBrowseItemFlow = [
   }
 ]
 
-var testBrowserResponseResultFilterFlow = [
+let testBrowserResponseResultFilterFlow = [
   {
     'id': '21337b84.2a8c2c',
     'type': 'OPCUA-IIoT-Inject',
@@ -596,7 +596,7 @@ var testBrowserResponseResultFilterFlow = [
       ]
     ]
   },
-  {id: 'n1f4', type: 'helper'},
+  { id: 'n1f4', type: 'helper' },
   {
     'id': 'df5067f7.317428',
     'type': 'OPCUA-IIoT-Connector',

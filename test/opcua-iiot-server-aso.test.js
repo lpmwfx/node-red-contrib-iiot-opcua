@@ -12,13 +12,13 @@
 
 jest.setTimeout(5000)
 
-var injectNode = require('node-red/nodes/core/core/20-inject')
-var functionNode = require('node-red/nodes/core/core/80-function')
-var serverAsoNode = require('../src/opcua-iiot-server-aso')
+const injectNode = require('node-red/nodes/core/core/20-inject')
+const functionNode = require('node-red/nodes/core/core/80-function')
+const serverAsoNode = require('../src/opcua-iiot-server-aso')
 
-var serverAsoFlowNodes = [injectNode, functionNode, serverAsoNode]
+const serverAsoFlowNodes = [injectNode, functionNode, serverAsoNode]
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
 beforeAll(function (done) {

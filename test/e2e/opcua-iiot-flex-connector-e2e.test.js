@@ -12,23 +12,23 @@
 
 jest.setTimeout(40000)
 
-var injectNode = require('node-red/nodes/core/core/20-inject')
-var inputNode = require('../../src/opcua-iiot-flex-connector')
-var connectorNode = require('../../src/opcua-iiot-connector')
-var serverNode = require('../../src/opcua-iiot-server')
-var flexServerNode = require('../../src/opcua-iiot-flex-server')
-var responseNode = require('../../src/opcua-iiot-response')
-var listenerNode = require('../../src/opcua-iiot-listener')
-var eventNode = require('../../src/opcua-iiot-event')
-var browserNode = require('../../src/opcua-iiot-browser')
-var injectIIoTNode = require('../../src/opcua-iiot-inject')
+const injectNode = require('node-red/nodes/core/core/20-inject')
+const inputNode = require('../../src/opcua-iiot-flex-connector')
+const connectorNode = require('../../src/opcua-iiot-connector')
+const serverNode = require('../../src/opcua-iiot-server')
+const flexServerNode = require('../../src/opcua-iiot-flex-server')
+const responseNode = require('../../src/opcua-iiot-response')
+const listenerNode = require('../../src/opcua-iiot-listener')
+const eventNode = require('../../src/opcua-iiot-event')
+const browserNode = require('../../src/opcua-iiot-browser')
+const injectIIoTNode = require('../../src/opcua-iiot-inject')
 
-var flexConnectorNodes = [injectNode, injectIIoTNode, inputNode, connectorNode, serverNode, flexServerNode, responseNode, listenerNode, eventNode, browserNode]
+const flexConnectorNodes = [injectNode, injectIIoTNode, inputNode, connectorNode, serverNode, flexServerNode, responseNode, listenerNode, eventNode, browserNode]
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var testFlexConnectorFlow = [
+let testFlexConnectorFlow = [
   {
     'id': '65015785.dec638',
     'type': 'inject',
@@ -114,10 +114,10 @@ var testFlexConnectorFlow = [
       ]
     ]
   },
-  {id: 'n1fc', type: 'helper'}
+  { id: 'n1fc', type: 'helper' }
 ]
 
-var testWithServersFlexConnector = [
+let testWithServersFlexConnector = [
   {
     'id': '65015785.dec658',
     'type': 'inject',
@@ -203,7 +203,7 @@ var testWithServersFlexConnector = [
       ]
     ]
   },
-  {id: 'n1fcs', type: 'helper'},
+  { id: 'n1fcs', type: 'helper' },
   {
     'id': '14d54403.f94f14',
     'type': 'OPCUA-IIoT-Flex-Connector',
@@ -217,7 +217,7 @@ var testWithServersFlexConnector = [
       ]
     ]
   },
-  {id: 'n2fcs', type: 'helper'},
+  { id: 'n2fcs', type: 'helper' },
   {
     'id': '494e76bd.d2c938',
     'type': 'OPCUA-IIoT-Connector',
@@ -319,7 +319,7 @@ var testWithServersFlexConnector = [
   }
 ]
 
-var flexConnectorSwitchingEndpointWithListenerFlow = [
+let flexConnectorSwitchingEndpointWithListenerFlow = [
   {
     'id': 'd0451f63.46605',
     'type': 'OPCUA-IIoT-Flex-Connector',
@@ -331,7 +331,7 @@ var flexConnectorSwitchingEndpointWithListenerFlow = [
       ['n1rcf1']
     ]
   },
-  {id: 'n1rcf1', type: 'helper'},
+  { id: 'n1rcf1', type: 'helper' },
   {
     'id': '3dc74847.4013a8',
     'type': 'OPCUA-IIoT-Inject',

@@ -35,8 +35,11 @@
       discoveryServerEndpointUrl: {value: ''},
       capabilitiesForMDNS: {value: ''},
       maxNodesPerRead: {value: 1000, validate:function(v) { return ((v === '') || (RED.validators.number(v) && (v > 0) && (v <= 100000))) }},
+      maxNodesPerWrite: {value: 1000, validate:function(v) { return ((v === '') || (RED.validators.number(v) && (v > 0) && (v <= 100000))) }},
+      maxNodesPerHistoryReadData: {value: 100, validate:function(v) { return ((v === '') || (RED.validators.number(v) && (v > 0) && (v <= 10000))) }},
       maxNodesPerBrowse: {value: 2000, validate:function(v) { return ((v === '') || (RED.validators.number(v) && (v > 0) && (v <= 200000))) }},
-      delayToClose: {value: 1000, validate:function(v) { return ((v === '') || (RED.validators.number(v) && (v >= 100) && (v <= 15000))) }}
+      delayToClose: {value: 1000, validate:function(v) { return ((v === '') || (RED.validators.number(v) && (v >= 100) && (v <= 15000))) }},
+      serverShutdownTimeout: {value: 3000, validate:function(v) { return ((v === '') || (RED.validators.number(v) && (v >= 100) && (v <= 15000))) }}
     },
     inputs: 1,
     outputs: 1,
@@ -386,6 +389,10 @@
             </div>
             <hr>
             <div class="form-row">
+                <label for="node-input-serverShutdownTimeout"><i class="icon-time"></i> <span data-i18n="opcua-iiot-contrib.label.serverShutdownTimeout"></span></label>
+                <input type="text" id="node-input-serverShutdownTimeout" placeholder="3000" style="width:80px">
+            </div>
+            <div class="form-row">
                 <label for="node-input-delayToClose"><i class="icon-time"></i> <span data-i18n="opcua-iiot-contrib.label.delayToClose"></span></label>
                 <input type="text" id="node-input-delayToClose" placeholder="1000" style="width:80px">
             </div>
@@ -432,6 +439,14 @@
             <div class="form-row">
                 <label for="node-input-maxNodesPerRead"><i class="icon-list"></i> <span data-i18n="opcua-iiot-contrib.label.maxNodesPerRead"></span></label>
                 <input type="text" id="node-input-maxNodesPerRead" placeholder="1000" style="width:80px">
+            </div>
+            <div class="form-row">
+                <label for="node-input-maxNodesPerHistoryReadData"><i class="icon-list"></i> <span data-i18n="opcua-iiot-contrib.label.maxNodesPerHistoryReadData"></span></label>
+                <input type="text" id="node-input-maxNodesPerHistoryReadData" placeholder="100" style="width:80px">
+            </div>
+            <div class="form-row">
+                <label for="node-input-maxNodesPerWrite"><i class="icon-list"></i> <span data-i18n="opcua-iiot-contrib.label.maxNodesPerWrite"></span></label>
+                <input type="text" id="node-input-maxNodesPerWrite" placeholder="1000" style="width:80px">
             </div>
             <div class="form-row">
                 <label for="node-input-maxNodesPerBrowse"><i class="icon-list"></i> <span data-i18n="opcua-iiot-contrib.label.maxNodesPerBrowse"></span></label>

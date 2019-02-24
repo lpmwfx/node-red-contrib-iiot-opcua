@@ -27,10 +27,11 @@ const assert = require('better-assert')
 const nodeOpcuaLib = require('node-opcua')
 
 function constructAlarmAddressSpaceDemo (test, addressSpace) {
+  const namespace = addressSpace.getOwnNamespace()
   addressSpace.installAlarmsAndConditionsService()
   const LocalizedText = nodeOpcuaLib.LocalizedText
 
-  let tanks = addressSpace.getOwnNamespace().addObject({
+  let tanks = namespace.addObject({
     browseName: 'Tanks',
     typeDefinition: 'FolderType',
     description: 'The Object representing some tanks',
@@ -38,7 +39,7 @@ function constructAlarmAddressSpaceDemo (test, addressSpace) {
     notifierOf: addressSpace.rootFolder.objects.server
   })
 
-  let oilTankLevel = addressSpace.getOwnNamespace().addVariable({
+  let oilTankLevel = namespace.addVariable({
     browseName: 'OilTankLevel',
     displayName: [
       new LocalizedText({ text: 'Oil Tank Level', locale: 'en-US' }),
@@ -57,7 +58,7 @@ function constructAlarmAddressSpaceDemo (test, addressSpace) {
   let exclusiveLimitAlarmType = addressSpace.findEventType('ExclusiveLimitAlarmType')
   assert(exclusiveLimitAlarmType != null)
 
-  let oilTankLevelCondition = addressSpace.getOwnNamespace().instantiateExclusiveLimitAlarm(exclusiveLimitAlarmType, {
+  let oilTankLevelCondition = namespace.instantiateExclusiveLimitAlarm(exclusiveLimitAlarmType, {
     componentOf: tanks,
     conditionSource: oilTankLevel,
     browseName: 'OilTankLevelCondition',
@@ -76,7 +77,7 @@ function constructAlarmAddressSpaceDemo (test, addressSpace) {
   // --------------------------------------------------------------
   // Let's create a second letiable with no Exclusive alarm
   // --------------------------------------------------------------
-  let gasTankLevel = addressSpace.getOwnNamespace().addVariable({
+  let gasTankLevel = namespace.addVariable({
     browseName: 'GasTankLevel',
     displayName: [ new LocalizedText({ text: 'Gas Tank Level', locale: 'en-US' }) ],
     description: 'Fill level in percentage (0% to 100%) of the gas tank',
@@ -88,7 +89,7 @@ function constructAlarmAddressSpaceDemo (test, addressSpace) {
   let nonExclusiveLimitAlarmType = addressSpace.findEventType('NonExclusiveLimitAlarmType')
   assert(nonExclusiveLimitAlarmType != null)
 
-  let gasTankLevelCondition = addressSpace.getOwnNamespace().instantiateNonExclusiveLimitAlarm(nonExclusiveLimitAlarmType, {
+  let gasTankLevelCondition = namespace.instantiateNonExclusiveLimitAlarm(nonExclusiveLimitAlarmType, {
     componentOf: tanks,
     conditionSource: gasTankLevel,
     browseName: 'GasTankLevelCondition',

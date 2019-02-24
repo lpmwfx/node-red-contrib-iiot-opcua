@@ -12,12 +12,12 @@
 
 jest.setTimeout(8000)
 
-var serverNode = require('../src/opcua-iiot-server')
+const serverNode = require('../src/opcua-iiot-server')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var testServerFlow = [
+let testServerFlow = [
   {
     'id': '6ec4ef50.86dc1',
     'type': 'OPCUA-IIoT-Server',
@@ -51,7 +51,7 @@ var testServerFlow = [
   }
 ]
 
-var testServerWithDiscoveryFlow = [
+let testServerWithDiscoveryFlow = [
   {
     'id': '6ec4ef50.86dc2',
     'type': 'OPCUA-IIoT-Server',

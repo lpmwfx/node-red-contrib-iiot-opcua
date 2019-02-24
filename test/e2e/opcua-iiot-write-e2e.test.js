@@ -12,22 +12,22 @@
 
 jest.setTimeout(20000)
 
-var injectNodeRedNode = require('node-red/nodes/core/core/20-inject')
-var functionNodeRedNode = require('node-red/nodes/core/core/80-function')
+const injectNodeRedNode = require('node-red/nodes/core/core/20-inject')
+const functionNodeRedNode = require('node-red/nodes/core/core/80-function')
 
 // iiot opcua
-var injectNode = require('../../src/opcua-iiot-inject')
-var connectorNode = require('../../src/opcua-iiot-connector')
-var inputNode = require('../../src/opcua-iiot-write')
-var responseNode = require('../../src/opcua-iiot-response')
-var serverNode = require('../../src/opcua-iiot-server')
+const injectNode = require('../../src/opcua-iiot-inject')
+const connectorNode = require('../../src/opcua-iiot-connector')
+const inputNode = require('../../src/opcua-iiot-write')
+const responseNode = require('../../src/opcua-iiot-response')
+const serverNode = require('../../src/opcua-iiot-server')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var writeNodesToLoad = [injectNodeRedNode, injectNode, functionNodeRedNode, connectorNode, inputNode, responseNode, serverNode]
+const writeNodesToLoad = [injectNodeRedNode, injectNode, functionNodeRedNode, connectorNode, inputNode, responseNode, serverNode]
 
-var testWriteFlow = [
+let testWriteFlow = [
   {
     'id': 'n1wrf1',
     'type': 'OPCUA-IIoT-Inject',
@@ -49,7 +49,7 @@ var testWriteFlow = [
     ],
     'wires': [['n2wrf1', 'n3wrf1']]
   },
-  {'id': 'n2wrf1', 'type': 'helper'},
+  { 'id': 'n2wrf1', 'type': 'helper' },
   {
     'id': 'n3wrf1',
     'type': 'function',
@@ -59,7 +59,7 @@ var testWriteFlow = [
     'noerr': 0,
     'wires': [['n4wrf1', 'n5wrf1']]
   },
-  {'id': 'n4wrf1', 'type': 'helper'},
+  { 'id': 'n4wrf1', 'type': 'helper' },
   {
     'id': 'n5wrf1',
     'type': 'OPCUA-IIoT-Write',
@@ -91,7 +91,7 @@ var testWriteFlow = [
     'strategyMaxDelay': '',
     'strategyRandomisationFactor': ''
   },
-  {'id': 'n6wrf1', 'type': 'helper'},
+  { 'id': 'n6wrf1', 'type': 'helper' },
   {
     'id': 'n7wrf1',
     'type': 'OPCUA-IIoT-Response',
@@ -100,7 +100,7 @@ var testWriteFlow = [
     'showErrors': false,
     'wires': [['n8wrf1']]
   },
-  {'id': 'n8wrf1', 'type': 'helper'},
+  { 'id': 'n8wrf1', 'type': 'helper' },
   {
     'id': 's1wrf1',
     'type': 'OPCUA-IIoT-Server',
@@ -128,7 +128,7 @@ var testWriteFlow = [
   }
 ]
 
-var testWriteWithoutValuesToWriteFlow = [
+let testWriteWithoutValuesToWriteFlow = [
   {
     'id': 'n1wrf2',
     'type': 'OPCUA-IIoT-Inject',
@@ -150,7 +150,7 @@ var testWriteWithoutValuesToWriteFlow = [
     ],
     'wires': [['n2wrf2', 'n3wrf2']]
   },
-  {'id': 'n2wrf2', 'type': 'helper'},
+  { 'id': 'n2wrf2', 'type': 'helper' },
   {
     'id': 'n3wrf2',
     'type': 'OPCUA-IIoT-Write',
@@ -182,7 +182,7 @@ var testWriteWithoutValuesToWriteFlow = [
     'strategyMaxDelay': '',
     'strategyRandomisationFactor': ''
   },
-  {'id': 'n4wrf2', 'type': 'helper'},
+  { 'id': 'n4wrf2', 'type': 'helper' },
   {
     'id': 'n5wrf2',
     'type': 'OPCUA-IIoT-Response',
@@ -191,7 +191,7 @@ var testWriteWithoutValuesToWriteFlow = [
     'showErrors': false,
     'wires': [['n6wrf2']]
   },
-  {'id': 'n6wrf2', 'type': 'helper'},
+  { 'id': 'n6wrf2', 'type': 'helper' },
   {
     'id': 's1wrf2',
     'type': 'OPCUA-IIoT-Server',
@@ -219,7 +219,7 @@ var testWriteWithoutValuesToWriteFlow = [
   }
 ]
 
-var testWriteNodeToBeLoadedWithServer = [
+let testWriteNodeToBeLoadedWithServer = [
   {
     'id': '34d2c6bc.43275b',
     'type': 'OPCUA-IIoT-Write',
@@ -361,7 +361,7 @@ describe('OPC UA Write node e2e Testing', function () {
             'nodeId': 'ns=1;s=TestReadWrite',
             'datatypeName': 'Double'
           }])
-          expect(msg.payload.statusCodes).toMatchObject([{'value': 0, 'description': 'No Error', 'name': 'Good'}])
+          expect(msg.payload.statusCodes).toMatchObject([{ 'value': 0, 'description': 'No Error', 'name': 'Good' }])
           expect(msg.topic).toBe('TestTopicWrite')
           expect(msg.nodetype).toBe('write')
           expect(msg.injectType).toBe('write')
@@ -392,7 +392,7 @@ describe('OPC UA Write node e2e Testing', function () {
             'nodeId': 'ns=1;s=TestReadWrite',
             'datatypeName': 'Double'
           }])
-          expect(msg.payload.statusCodes).toMatchObject([{'value': 0, 'description': 'No Error', 'name': 'Good'}])
+          expect(msg.payload.statusCodes).toMatchObject([{ 'value': 0, 'description': 'No Error', 'name': 'Good' }])
           expect(msg.topic).toBe('TestTopicWrite')
           expect(msg.nodetype).toBe('write')
           expect(msg.injectType).toBe('write')

@@ -12,15 +12,15 @@
 
 jest.setTimeout(20000)
 
-var functionNode = require('node-red/nodes/core/core/80-function')
-var injectNode = require('../../src/opcua-iiot-inject')
-var inputNode = require('../../src/opcua-iiot-server-aso')
-var serverNode = require('../../src/opcua-iiot-server')
+const functionNode = require('node-red/nodes/core/core/80-function')
+const injectNode = require('../../src/opcua-iiot-inject')
+const inputNode = require('../../src/opcua-iiot-server-aso')
+const serverNode = require('../../src/opcua-iiot-server')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var testASOFlow = [
+let testASOFlow = [
   {
     'id': '7cb85115.7635',
     'type': 'OPCUA-IIoT-Server-ASO',
@@ -441,7 +441,7 @@ var testASOFlow = [
       ]
     ]
   },
-  {id: 'n4', type: 'helper'},
+  { id: 'n4', type: 'helper' },
   {
     'id': 's1cf5',
     'type': 'OPCUA-IIoT-Server',
@@ -467,7 +467,7 @@ var testASOFlow = [
     'maxNodesPerBrowse': 2000,
     'wires': [['n5']]
   },
-  {id: 'n5', type: 'helper'}
+  { id: 'n5', type: 'helper' }
 ]
 
 beforeAll(function (done) {

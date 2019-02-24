@@ -12,33 +12,33 @@
 
 jest.setTimeout(30000)
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
 // iiot opc ua nodes
-var serverNode = require('../../src/opcua-iiot-server')
-var injectNode = require('../../src/opcua-iiot-inject')
-var inputNode = require('../../src/opcua-iiot-connector')
+const serverNode = require('../../src/opcua-iiot-server')
+const injectNode = require('../../src/opcua-iiot-inject')
+const inputNode = require('../../src/opcua-iiot-connector')
 // services
-var readNode = require('../../src/opcua-iiot-read')
-var writeNode = require('../../src/opcua-iiot-write')
-var browserNode = require('../../src/opcua-iiot-browser')
-var listenerNode = require('../../src/opcua-iiot-listener')
-var methodCallerNode = require('../../src/opcua-iiot-method-caller')
+const readNode = require('../../src/opcua-iiot-read')
+const writeNode = require('../../src/opcua-iiot-write')
+const browserNode = require('../../src/opcua-iiot-browser')
+const listenerNode = require('../../src/opcua-iiot-listener')
+const methodCallerNode = require('../../src/opcua-iiot-method-caller')
 
-var nodesToLoadForBrowser = [injectNode, browserNode, inputNode, serverNode]
-var nodesToLoadForReader = [injectNode, readNode, inputNode, serverNode]
-var nodesToLoadForWriter = [injectNode, writeNode, inputNode, serverNode]
-var nodesToLoadForListener = [injectNode, listenerNode, inputNode, serverNode]
-var nodesToLoadForMethodCaller = [injectNode, methodCallerNode, inputNode, serverNode]
+const nodesToLoadForBrowser = [injectNode, browserNode, inputNode, serverNode]
+const nodesToLoadForReader = [injectNode, readNode, inputNode, serverNode]
+const nodesToLoadForWriter = [injectNode, writeNode, inputNode, serverNode]
+const nodesToLoadForListener = [injectNode, listenerNode, inputNode, serverNode]
+const nodesToLoadForMethodCaller = [injectNode, methodCallerNode, inputNode, serverNode]
 
 // https://www.dailycred.com/article/bcrypt-calculator
-var testCredentials = {
+const testCredentials = {
   user: 'peter',
   password: '$2a$04$Dj8UfDYcMLjttad0Qi67DeKtqJM6SZ8XR.Oy70.GUvle4MlrVWaYC'
 }
 
-var testConnectorBrowseFlow = [
+let testConnectorBrowseFlow = [
   {
     'id': 'n1cf1',
     'type': 'OPCUA-IIoT-Inject',
@@ -54,7 +54,7 @@ var testConnectorBrowseFlow = [
     'addressSpaceItems': [],
     'wires': [['n2cf1', 'n3cf1']]
   },
-  {id: 'n2cf1', type: 'helper'},
+  { id: 'n2cf1', type: 'helper' },
   {
     'id': 'n3cf1',
     'type': 'OPCUA-IIoT-Browser',
@@ -94,7 +94,7 @@ var testConnectorBrowseFlow = [
     'strategyMaxDelay': '',
     'strategyRandomisationFactor': ''
   },
-  {id: 'n5cf1', type: 'helper'},
+  { id: 'n5cf1', type: 'helper' },
   {
     'id': 's1cf1',
     'type': 'OPCUA-IIoT-Server',
@@ -122,7 +122,7 @@ var testConnectorBrowseFlow = [
   }
 ]
 
-var testConnectorReadFlow = [
+let testConnectorReadFlow = [
   {
     'id': 'n1cf2',
     'type': 'OPCUA-IIoT-Inject',
@@ -144,7 +144,7 @@ var testConnectorReadFlow = [
     ],
     'wires': [['n2cf2', 'n3cf2']]
   },
-  {id: 'n2cf2', type: 'helper'},
+  { id: 'n2cf2', type: 'helper' },
   {
     'id': 'n3cf2',
     'type': 'OPCUA-IIoT-Read',
@@ -181,7 +181,7 @@ var testConnectorReadFlow = [
     'strategyMaxDelay': '',
     'strategyRandomisationFactor': ''
   },
-  {id: 'n5cf2', type: 'helper'},
+  { id: 'n5cf2', type: 'helper' },
   {
     'id': 's1cf2',
     'type': 'OPCUA-IIoT-Server',
@@ -209,7 +209,7 @@ var testConnectorReadFlow = [
   }
 ]
 
-var testConnectorListenerFlow = [
+let testConnectorListenerFlow = [
   {
     'id': 'n1cf3',
     'type': 'OPCUA-IIoT-Inject',
@@ -231,7 +231,7 @@ var testConnectorListenerFlow = [
     ],
     'wires': [['n2cf3', 'n3cf3']]
   },
-  {id: 'n2cf3', type: 'helper'},
+  { id: 'n2cf3', type: 'helper' },
   {
     'id': 'n3cf3',
     'type': 'OPCUA-IIoT-Listener',
@@ -267,7 +267,7 @@ var testConnectorListenerFlow = [
     'strategyRandomisationFactor': '',
     'requestedSessionTimeout': ''
   },
-  {id: 'n5cf3', type: 'helper'},
+  { id: 'n5cf3', type: 'helper' },
   {
     'id': 's1cf3',
     'type': 'OPCUA-IIoT-Server',
@@ -295,7 +295,7 @@ var testConnectorListenerFlow = [
   }
 ]
 
-var testConnectorWriteFlow = [
+let testConnectorWriteFlow = [
   {
     'id': 'n1cf4',
     'type': 'OPCUA-IIoT-Inject',
@@ -317,7 +317,7 @@ var testConnectorWriteFlow = [
     ],
     'wires': [['n2cf4', 'n3cf4']]
   },
-  {id: 'n2cf4', type: 'helper'},
+  { id: 'n2cf4', type: 'helper' },
   {
     'id': 'n3cf4',
     'type': 'OPCUA-IIoT-Write',
@@ -350,7 +350,7 @@ var testConnectorWriteFlow = [
     'strategyMaxDelay': '',
     'strategyRandomisationFactor': ''
   },
-  {id: 'n5cf4', type: 'helper'},
+  { id: 'n5cf4', type: 'helper' },
   {
     'id': 's1cf4',
     'type': 'OPCUA-IIoT-Server',
@@ -388,7 +388,7 @@ var testConnectorWriteFlow = [
   }
 ]
 
-var testConnectorMethodCallerFlow = [
+let testConnectorMethodCallerFlow = [
   {
     'id': 'n1cf5',
     'type': 'OPCUA-IIoT-Inject',
@@ -404,7 +404,7 @@ var testConnectorMethodCallerFlow = [
     'addressSpaceItems': [],
     'wires': [['n2cf5', 'n3cf5']]
   },
-  {id: 'n2cf5', type: 'helper'},
+  { id: 'n2cf5', type: 'helper' },
   {
     'id': 'n3cf5',
     'type': 'OPCUA-IIoT-Method-Caller',
@@ -453,7 +453,7 @@ var testConnectorMethodCallerFlow = [
     'strategyMaxDelay': '',
     'strategyRandomisationFactor': ''
   },
-  {id: 'n5cf5', type: 'helper'},
+  { id: 'n5cf5', type: 'helper' },
   {
     'id': 's1cf5',
     'type': 'OPCUA-IIoT-Server',
@@ -481,7 +481,7 @@ var testConnectorMethodCallerFlow = [
   }
 ]
 
-var testConnectorHTTPFlow = [
+let testConnectorHTTPFlow = [
   {
     'id': 'n1cf6',
     'type': 'OPCUA-IIoT-Method-Caller',
@@ -845,7 +845,7 @@ describe('OPC UA Connector node e2e Testing', function () {
         n5.on('input', function (msg) {
           expect(msg.payload[0].nodeId).toBe('ns=1;s=Pressure')
           expect(msg.topic).toBe('TestTopicRead')
-          expect(msg.addressSpaceItems).toMatchObject([{'name': '', 'nodeId': 'ns=1;s=Pressure', 'datatypeName': ''}])
+          expect(msg.addressSpaceItems).toMatchObject([{ 'name': '', 'nodeId': 'ns=1;s=Pressure', 'datatypeName': '' }])
           done()
         })
       })
@@ -876,13 +876,13 @@ describe('OPC UA Connector node e2e Testing', function () {
 
     it('should get a message with addressSpaceItems after write', function (done) {
       testConnectorWriteFlow[3].endpoint = 'opc.tcp://localhost:56442/'
-      testConnectorWriteFlow[3].credentials = {user: 'peter', password: 'peter'}
+      testConnectorWriteFlow[3].credentials = { user: 'peter', password: 'peter' }
       testConnectorWriteFlow[5].port = 56442
       helper.load(nodesToLoadForWriter, testConnectorWriteFlow, testCredentials, function () {
         let n5 = helper.getNode('n5cf4')
         n5.on('input', function (msg) {
           expect(msg.topic).toBe('TestTopicWrite')
-          expect(msg.addressSpaceItems).toMatchObject([{'name': 'Pressure', 'nodeId': 'ns=1;s=Pressure', 'datatypeName': 'Double'}])
+          expect(msg.addressSpaceItems).toMatchObject([{ 'name': 'Pressure', 'nodeId': 'ns=1;s=Pressure', 'datatypeName': 'Double' }])
           done()
         })
       })
@@ -890,12 +890,12 @@ describe('OPC UA Connector node e2e Testing', function () {
 
     it('should get a message with addressSpaceItems after write with autoselect endpoint', function (done) {
       testConnectorWriteFlow[3].autoSelectRightEndpoint = true
-      testConnectorWriteFlow[3].credentials = {user: 'peter', password: 'peter'}
+      testConnectorWriteFlow[3].credentials = { user: 'peter', password: 'peter' }
       helper.load(nodesToLoadForWriter, testConnectorWriteFlow, testCredentials, function () {
         let n5 = helper.getNode('n5cf4')
         n5.on('input', function (msg) {
           expect(msg.topic).toBe('TestTopicWrite')
-          expect(msg.addressSpaceItems).toMatchObject([{'name': 'Pressure', 'nodeId': 'ns=1;s=Pressure', 'datatypeName': 'Double'}])
+          expect(msg.addressSpaceItems).toMatchObject([{ 'name': 'Pressure', 'nodeId': 'ns=1;s=Pressure', 'datatypeName': 'Double' }])
           done()
         })
       })
@@ -922,7 +922,7 @@ describe('OPC UA Connector node e2e Testing', function () {
           expect(msg.nodetype).toBe('method')
           expect(msg.injectType).toBe('inject')
           expect(msg.methodType).toBe('basic')
-          expect(msg.payload).toMatchObject([{'statusCode': {'value': 0, 'description': 'No Error', 'name': 'Good'}, 'outputArguments': [{'dataType': 'String', 'arrayType': 'Array', 'value': ['Whaff!!!!!', 'Whaff!!!!!', 'Whaff!!!!!']}]}])
+          expect(msg.payload).toMatchObject([{ 'statusCode': { 'value': 0, 'description': 'No Error', 'name': 'Good' }, 'outputArguments': [{ 'dataType': 'String', 'arrayType': 'Array', 'value': ['Whaff!!!!!', 'Whaff!!!!!', 'Whaff!!!!!'] }] }])
           done()
         })
       })

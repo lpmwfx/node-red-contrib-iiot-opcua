@@ -13,19 +13,19 @@
 jest.setTimeout(30000)
 
 // iiot opc ua nodes
-var injectNode = require('../../src/opcua-iiot-inject')
-var serverNode = require('../../src/opcua-iiot-server')
-var responseNode = require('../../src/opcua-iiot-response')
-var connectorNode = require('../../src/opcua-iiot-connector')
-var inputNode = require('../../src/opcua-iiot-listener')
-var browserNode = require('../../src/opcua-iiot-browser')
+const injectNode = require('../../src/opcua-iiot-inject')
+const serverNode = require('../../src/opcua-iiot-server')
+const responseNode = require('../../src/opcua-iiot-response')
+const connectorNode = require('../../src/opcua-iiot-connector')
+const inputNode = require('../../src/opcua-iiot-listener')
+const browserNode = require('../../src/opcua-iiot-browser')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var listenerNodesToLoad = [injectNode, browserNode, connectorNode, inputNode, responseNode, serverNode]
+const listenerNodesToLoad = [injectNode, browserNode, connectorNode, inputNode, responseNode, serverNode]
 
-var testListenerMonitoringFlow = [
+let testListenerMonitoringFlow = [
   {
     'id': 'c9ca1bbe.d1cb2',
     'type': 'OPCUA-IIoT-Inject',
@@ -76,7 +76,7 @@ var testListenerMonitoringFlow = [
       ]
     ]
   },
-  {id: 'n2li', type: 'helper'},
+  { id: 'n2li', type: 'helper' },
   {
     'id': 'd9754392.9eb1d',
     'type': 'OPCUA-IIoT-Listener',
@@ -93,7 +93,7 @@ var testListenerMonitoringFlow = [
       ]
     ]
   },
-  {id: 'n3li', type: 'helper'},
+  { id: 'n3li', type: 'helper' },
   {
     'id': 'b0856b45.da4a18',
     'type': 'OPCUA-IIoT-Response',
@@ -109,7 +109,7 @@ var testListenerMonitoringFlow = [
       ]
     ]
   },
-  {id: 'n4li', type: 'helper'},
+  { id: 'n4li', type: 'helper' },
   {
     'id': '4ab7dc9.b7c5624',
     'type': 'OPCUA-IIoT-Server',
@@ -159,7 +159,7 @@ var testListenerMonitoringFlow = [
   }
 ]
 
-var testListenerMonitoringAboFlow = [
+let testListenerMonitoringAboFlow = [
   {
     'id': 'c9ca1bbe.d1cb3',
     'type': 'OPCUA-IIoT-Inject',
@@ -210,7 +210,7 @@ var testListenerMonitoringAboFlow = [
       ]
     ]
   },
-  {id: 'n1lia', type: 'helper'},
+  { id: 'n1lia', type: 'helper' },
   {
     'id': 'c9ca1bbe.d1cb5',
     'type': 'OPCUA-IIoT-Inject',
@@ -261,7 +261,7 @@ var testListenerMonitoringAboFlow = [
       ]
     ]
   },
-  {id: 'n2lia', type: 'helper'},
+  { id: 'n2lia', type: 'helper' },
   {
     'id': 'd9754392.9eb1e',
     'type': 'OPCUA-IIoT-Listener',
@@ -278,7 +278,7 @@ var testListenerMonitoringAboFlow = [
       ]
     ]
   },
-  {id: 'n3lia', type: 'helper'},
+  { id: 'n3lia', type: 'helper' },
   {
     'id': 'b0856b45.da4a19',
     'type': 'OPCUA-IIoT-Response',
@@ -294,7 +294,7 @@ var testListenerMonitoringAboFlow = [
       ]
     ]
   },
-  {id: 'n4lia', type: 'helper'},
+  { id: 'n4lia', type: 'helper' },
   {
     'id': '4ab7dc9.b7c5625',
     'type': 'OPCUA-IIoT-Server',
@@ -344,7 +344,7 @@ var testListenerMonitoringAboFlow = [
   }
 ]
 
-var recursiveBrowserAboFlow = [
+let recursiveBrowserAboFlow = [
   {
     'id': '8a761f37.f69808',
     'type': 'OPCUA-IIoT-Inject',
@@ -407,7 +407,7 @@ var recursiveBrowserAboFlow = [
       ]
     ]
   },
-  {id: 'n1abo', type: 'helper'},
+  { id: 'n1abo', type: 'helper' },
   {
     'id': '18b3e5b9.f9ba4a',
     'type': 'OPCUA-IIoT-Browser',
@@ -432,7 +432,7 @@ var recursiveBrowserAboFlow = [
       ]
     ]
   },
-  {id: 'n2abo', type: 'helper'},
+  { id: 'n2abo', type: 'helper' },
   {
     'id': '44548ff9.287e48',
     'type': 'OPCUA-IIoT-Response',
@@ -448,7 +448,7 @@ var recursiveBrowserAboFlow = [
       ]
     ]
   },
-  {id: 'n3abo', type: 'helper'},
+  { id: 'n3abo', type: 'helper' },
   {
     'id': 'f142e56c.d7906',
     'type': 'OPCUA-IIoT-Listener',
@@ -468,7 +468,7 @@ var recursiveBrowserAboFlow = [
       ]
     ]
   },
-  {id: 'n4abo', type: 'helper'},
+  { id: 'n4abo', type: 'helper' },
   {
     'id': 'c2a66a6.1940198',
     'type': 'OPCUA-IIoT-Response',
@@ -484,7 +484,7 @@ var recursiveBrowserAboFlow = [
       ]
     ]
   },
-  {id: 'n5abo', type: 'helper'},
+  { id: 'n5abo', type: 'helper' },
   {
     'id': 'c2a66a6.1940123',
     'type': 'OPCUA-IIoT-Response',
@@ -500,7 +500,7 @@ var recursiveBrowserAboFlow = [
       ]
     ]
   },
-  {id: 'n6abo', type: 'helper'},
+  { id: 'n6abo', type: 'helper' },
   {
     'id': '296a2f29.56e248',
     'type': 'OPCUA-IIoT-Connector',
@@ -550,7 +550,7 @@ var recursiveBrowserAboFlow = [
   }
 ]
 
-var feedListenerWithRecursiveBrowse = [
+let feedListenerWithRecursiveBrowse = [
   {
     'id': '3b4d83c1.6b490c',
     'type': 'OPCUA-IIoT-Inject',
@@ -599,7 +599,7 @@ var feedListenerWithRecursiveBrowse = [
       ]
     ]
   },
-  {id: 'n1brli', type: 'helper'},
+  { id: 'n1brli', type: 'helper' },
   {
     'id': '66692416.1b2bb4',
     'type': 'OPCUA-IIoT-Listener',
@@ -618,7 +618,7 @@ var feedListenerWithRecursiveBrowse = [
       ]
     ]
   },
-  {id: 'n2brli', type: 'helper'},
+  { id: 'n2brli', type: 'helper' },
   {
     'id': 'e604f20a.c8bd4',
     'type': 'OPCUA-IIoT-Response',
@@ -639,7 +639,7 @@ var feedListenerWithRecursiveBrowse = [
       ]
     ]
   },
-  {id: 'n3brli', type: 'helper'},
+  { id: 'n3brli', type: 'helper' },
   {
     'id': 'c95fc9fc.64ccc',
     'type': 'OPCUA-IIoT-Connector',

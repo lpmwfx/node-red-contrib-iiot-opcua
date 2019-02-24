@@ -12,18 +12,18 @@
 
 jest.setTimeout(5000)
 
-var injectNode = require('node-red/nodes/core/core/20-inject')
-var functionNode = require('node-red/nodes/core/core/80-function')
+const injectNode = require('node-red/nodes/core/core/20-inject')
+const functionNode = require('node-red/nodes/core/core/80-function')
 
 // iiot opcua
-var readNode = require('../src/opcua-iiot-read')
+const readNode = require('../src/opcua-iiot-read')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var readNodesToLoad = [injectNode, functionNode, readNode]
+const readNodesToLoad = [injectNode, functionNode, readNode]
 
-var testReadNodeToBeLoaded = [
+let testReadNodeToBeLoaded = [
   {
     'id': '41cb29d.1ab50d8',
     'type': 'OPCUA-IIoT-Read',
@@ -166,7 +166,7 @@ describe('OPC UA Read node Unit Testing', function () {
       helper.load(readNodesToLoad, testReadNodeToBeLoaded, () => {
         let n1 = helper.getNode('41cb29d.1ab50d8')
         if (n1) {
-          n1.bianco.iiot.handleReadError(new Error('Testing Error To Handle'), {payload: {}})
+          n1.bianco.iiot.handleReadError(new Error('Testing Error To Handle'), { payload: {} })
           done()
         }
       })

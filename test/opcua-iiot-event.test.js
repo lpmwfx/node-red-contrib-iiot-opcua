@@ -12,13 +12,13 @@
 
 jest.setTimeout(5000)
 
-var injectNode = require('node-red/nodes/core/core/20-inject')
-var inputNode = require('../src/opcua-iiot-event')
+const injectNode = require('node-red/nodes/core/core/20-inject')
+const inputNode = require('../src/opcua-iiot-event')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var testEventNodeFlow = [
+let testEventNodeFlow = [
   {
     'id': 'n1evf1',
     'type': 'inject',
@@ -30,7 +30,7 @@ var testEventNodeFlow = [
     'once': true,
     'wires': [['n2evf1', 'n3evf1']]
   },
-  {id: 'n2evf1', type: 'helper'},
+  { id: 'n2evf1', type: 'helper' },
   {
     'id': 'n3evf1',
     'type': 'OPCUA-IIoT-Event',
@@ -43,7 +43,7 @@ var testEventNodeFlow = [
     'showErrors': false,
     'wires': [['n4evf1']]
   },
-  {id: 'n4evf1', type: 'helper'}
+  { id: 'n4evf1', type: 'helper' }
 ]
 
 describe('OPC UA Event node Unit Testing', function () {
@@ -99,7 +99,7 @@ describe('OPC UA Event node Unit Testing', function () {
       helper.load([injectNode, inputNode], testEventNodeFlow, function () {
         let n2 = helper.getNode('n2evf1')
         n2.on('input', function (msg) {
-          expect(msg.payload).toMatchObject({'queueSize': 10, 'interval': 1000})
+          expect(msg.payload).toMatchObject({ 'queueSize': 10, 'interval': 1000 })
           done()
         })
       })

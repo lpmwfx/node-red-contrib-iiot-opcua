@@ -25,11 +25,14 @@
       "xmlsets": "XML-Sets",
       "serverDiscovery": "Discovery",
       "maxNodesPerRead": "Max per Read",
+      "maxNodesPerHistoryReadData": "Max per History-Read",
+      "maxNodesPerWrite": "Max per Write",
       "maxNodesPerBrowse": "Max per Browse",
       "registerServerMethod": "Register Server Method",
       "discoveryServerEndpointUrl": "Endpoint Url",
       "capabilitiesForMDNS": "MDNS capabilities",
       "delayToClose": "Delay On Close",
+      "serverShutdownTimeout": "Shutdown Timeout",
       "individualCerts": "Use individual Certificate Files"
     },
     "tabs-label": {

@@ -12,18 +12,18 @@
 
 jest.setTimeout(5000)
 
-var injectNode = require('node-red/nodes/core/core/20-inject')
-var functionNode = require('node-red/nodes/core/core/80-function')
+const injectNode = require('node-red/nodes/core/core/20-inject')
+const functionNode = require('node-red/nodes/core/core/80-function')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
 // iiot opc ua nodes
-var inputNode = require('../src/opcua-iiot-connector')
+const inputNode = require('../src/opcua-iiot-connector')
 
-var nodesToLoadConnector = [injectNode, functionNode, inputNode]
+const nodesToLoadConnector = [injectNode, functionNode, inputNode]
 
-var connectorUnitFlow = [
+let connectorUnitFlow = [
   {
     'id': 'n4',
     'type': 'OPCUA-IIoT-Connector',

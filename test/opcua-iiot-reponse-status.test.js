@@ -12,14 +12,14 @@
 
 jest.setTimeout(10000)
 
-var injectNode = require('node-red/nodes/core/core/20-inject')
-var functionNode = require('node-red/nodes/core/core/80-function')
-var inputNode = require('../src/opcua-iiot-response')
+const injectNode = require('node-red/nodes/core/core/20-inject')
+const functionNode = require('node-red/nodes/core/core/80-function')
+const inputNode = require('../src/opcua-iiot-response')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var readGoodInject = {
+let readGoodInject = {
   'id': 'n1rsf1',
   'type': 'inject',
   'name': 'TestInject Read',
@@ -33,7 +33,7 @@ var readGoodInject = {
   'wires': [['n2rsf', 'n3rsfrd']]
 }
 
-var readBadInject = {
+let readBadInject = {
   'id': 'n1rsf2',
   'type': 'inject',
   'name': 'TestInject Read',
@@ -47,7 +47,7 @@ var readBadInject = {
   'wires': [['n2rsf', 'n3rsfrd']]
 }
 
-var readOtherInject = {
+let readOtherInject = {
   'id': 'n1rsf3',
   'type': 'inject',
   'name': 'TestInject Read',
@@ -61,7 +61,7 @@ var readOtherInject = {
   'wires': [['n2rsf', 'n3rsfrd']]
 }
 
-var readResultSimulation = {
+let readResultSimulation = {
   'id': 'n3rsfrd',
   'type': 'function',
   'name': '',
@@ -71,7 +71,7 @@ var readResultSimulation = {
   'wires': [['n4rsf', 'n5rsf']]
 }
 
-var writeGoodInject = {
+let writeGoodInject = {
   'id': 'n1rsf5',
   'type': 'inject',
   'name': 'TestInject Write',
@@ -85,7 +85,7 @@ var writeGoodInject = {
   'wires': [['n2rsf', 'n3rsfwr']]
 }
 
-var writeBadInject = {
+let writeBadInject = {
   'id': 'n1rsf6',
   'type': 'inject',
   'name': 'TestInject Write',
@@ -99,7 +99,7 @@ var writeBadInject = {
   'wires': [['n2rsf', 'n3rsfwr']]
 }
 
-var writeOtherInject = {
+let writeOtherInject = {
   'id': 'n1rsf7',
   'type': 'inject',
   'name': 'TestInject Write',
@@ -113,7 +113,7 @@ var writeOtherInject = {
   'wires': [['n2rsf', 'n3rsfwr']]
 }
 
-var writeResultSimulation = {
+let writeResultSimulation = {
   'id': 'n3rsfwr',
   'type': 'function',
   'name': '',
@@ -123,7 +123,7 @@ var writeResultSimulation = {
   'wires': [['n4rsf', 'n5rsf']]
 }
 
-var listenGoodInject = {
+let listenGoodInject = {
   'id': 'n1rsf8',
   'type': 'inject',
   'name': 'TestInject Listen',
@@ -137,7 +137,7 @@ var listenGoodInject = {
   'wires': [['n2rsf', 'n3rsfli']]
 }
 
-var listenBadInject = {
+let listenBadInject = {
   'id': 'n1rsf9',
   'type': 'inject',
   'name': 'TestInject Listen',
@@ -151,7 +151,7 @@ var listenBadInject = {
   'wires': [['n2rsf', 'n3rsfli']]
 }
 
-var listenOtherInject = {
+let listenOtherInject = {
   'id': 'n1rsf10',
   'type': 'inject',
   'name': 'TestInject Listen',
@@ -165,7 +165,7 @@ var listenOtherInject = {
   'wires': [['n2rsf', 'n3rsfli']]
 }
 
-var listenResultSimulation = {
+let listenResultSimulation = {
   'id': 'n3rsfli',
   'type': 'function',
   'name': '',
@@ -175,9 +175,9 @@ var listenResultSimulation = {
   'wires': [['n4rsf', 'n5rsf']]
 }
 
-var testFlowPayload = [
-  {id: 'n2rsf', type: 'helper'},
-  {id: 'n4rsf', type: 'helper'},
+let testFlowPayload = [
+  { id: 'n2rsf', type: 'helper' },
+  { id: 'n4rsf', type: 'helper' },
   {
     'id': 'n5rsf',
     'type': 'OPCUA-IIoT-Response',
@@ -187,20 +187,20 @@ var testFlowPayload = [
     'showErrors': false,
     'wires': [['n6rsf']]
   },
-  {id: 'n6rsf', type: 'helper'}
+  { id: 'n6rsf', type: 'helper' }
 ]
 
-var readGoodTestFlowPayload = testFlowPayload.concat([readResultSimulation, readGoodInject])
-var writeGoodTestFlowPayload = testFlowPayload.concat([writeResultSimulation, writeGoodInject])
-var listenGoodTestFlowPayload = testFlowPayload.concat([listenResultSimulation, listenGoodInject])
+const readGoodTestFlowPayload = testFlowPayload.concat([readResultSimulation, readGoodInject])
+const writeGoodTestFlowPayload = testFlowPayload.concat([writeResultSimulation, writeGoodInject])
+const listenGoodTestFlowPayload = testFlowPayload.concat([listenResultSimulation, listenGoodInject])
 
-var readBadTestFlowPayload = testFlowPayload.concat([readResultSimulation, readBadInject])
-var writeBadTestFlowPayload = testFlowPayload.concat([writeResultSimulation, writeBadInject])
-var listenBadTestFlowPayload = testFlowPayload.concat([listenResultSimulation, listenBadInject])
+const readBadTestFlowPayload = testFlowPayload.concat([readResultSimulation, readBadInject])
+const writeBadTestFlowPayload = testFlowPayload.concat([writeResultSimulation, writeBadInject])
+const listenBadTestFlowPayload = testFlowPayload.concat([listenResultSimulation, listenBadInject])
 
-var readOtherTestFlowPayload = testFlowPayload.concat([readResultSimulation, readOtherInject])
-var writeOtherTestFlowPayload = testFlowPayload.concat([writeResultSimulation, writeOtherInject])
-var listenOtherTestFlowPayload = testFlowPayload.concat([listenResultSimulation, listenOtherInject])
+const readOtherTestFlowPayload = testFlowPayload.concat([readResultSimulation, readOtherInject])
+const writeOtherTestFlowPayload = testFlowPayload.concat([writeResultSimulation, writeOtherInject])
+const listenOtherTestFlowPayload = testFlowPayload.concat([listenResultSimulation, listenOtherInject])
 
 describe('OPC UA Response Status node Unit Testing', function () {
   beforeAll(function (done) {
@@ -228,7 +228,7 @@ describe('OPC UA Response Status node Unit Testing', function () {
       helper.load([injectNode, functionNode, inputNode], readGoodTestFlowPayload, function () {
         let n4 = helper.getNode('n4rsf')
         n4.on('input', function (msg) {
-          expect(msg.payload).toMatchObject([{'value': {'dataType': 'Double', 'arrayType': 'Scalar', 'value': 20}, 'statusCode': {'value': 0, 'description': 'No Error', 'name': 'Good'}, 'sourcePicoseconds': 0, 'serverPicoseconds': 0}])
+          expect(msg.payload).toMatchObject([{ 'value': { 'dataType': 'Double', 'arrayType': 'Scalar', 'value': 20 }, 'statusCode': { 'value': 0, 'description': 'No Error', 'name': 'Good' }, 'sourcePicoseconds': 0, 'serverPicoseconds': 0 }])
           done()
         })
       })
@@ -238,7 +238,7 @@ describe('OPC UA Response Status node Unit Testing', function () {
       helper.load([injectNode, functionNode, inputNode], writeGoodTestFlowPayload, function () {
         let n4 = helper.getNode('n4rsf')
         n4.on('input', function (msg) {
-          expect(msg.payload).toMatchObject({'statusCodes': [{'value': 0, 'description': 'No Error', 'name': 'Good'}]})
+          expect(msg.payload).toMatchObject({ 'statusCodes': [{ 'value': 0, 'description': 'No Error', 'name': 'Good' }] })
           done()
         })
       })
@@ -248,7 +248,7 @@ describe('OPC UA Response Status node Unit Testing', function () {
       helper.load([injectNode, functionNode, inputNode], listenGoodTestFlowPayload, function () {
         let n4 = helper.getNode('n4rsf')
         n4.on('input', function (msg) {
-          expect(msg.payload).toMatchObject({'value': {'dataType': 'UInt16', 'arrayType': 'Scalar', 'value': 0}, 'statusCode': {'value': 0, 'description': 'No Error', 'name': 'Good'}, 'sourceTimestamp': '0', 'sourcePicoseconds': 0, 'serverTimestamp': '0', 'serverPicoseconds': 0})
+          expect(msg.payload).toMatchObject({ 'value': { 'dataType': 'UInt16', 'arrayType': 'Scalar', 'value': 0 }, 'statusCode': { 'value': 0, 'description': 'No Error', 'name': 'Good' }, 'sourceTimestamp': '0', 'sourcePicoseconds': 0, 'serverTimestamp': '0', 'serverPicoseconds': 0 })
           done()
         })
       })

@@ -11,7 +11,6 @@ jest.setTimeout(5000)
 
 describe('OPC UA Core Browser', function () {
   let coreBrowser = require('../../src/core/opcua-iiot-core-browser')
-  const events = require('events')
 
   describe('Core Browser unit test', function () {
     it('should return the objects root nodeId', function (done) {
@@ -20,17 +19,17 @@ describe('OPC UA Core Browser', function () {
     })
 
     it('should return the default objects nodeId without root in payload request', function (done) {
-      expect(coreBrowser.extractNodeIdFromTopic({payload: { }}, {})).toBe(null)
+      expect(coreBrowser.extractNodeIdFromTopic({ payload: { } }, {})).toBe(null)
       done()
     })
 
     it('should return the default objects nodeId with empty root in payload request', function (done) {
-      expect(coreBrowser.extractNodeIdFromTopic({payload: { actiontype: 'browse', root: {} }}, {})).toBe(coreBrowser.core.OBJECTS_ROOT)
+      expect(coreBrowser.extractNodeIdFromTopic({ payload: { actiontype: 'browse', root: {} } }, {})).toBe(coreBrowser.core.OBJECTS_ROOT)
       done()
     })
 
     it('should return the nodeId from root in payload request', function (done) {
-      expect(coreBrowser.extractNodeIdFromTopic({payload: { actiontype: 'browse', root: { nodeId: 'ns=1;s=MyDemo' } }}, {})).toBe('ns=1;s=MyDemo')
+      expect(coreBrowser.extractNodeIdFromTopic({ payload: { actiontype: 'browse', root: { nodeId: 'ns=1;s=MyDemo' } } }, {})).toBe('ns=1;s=MyDemo')
       done()
     })
 

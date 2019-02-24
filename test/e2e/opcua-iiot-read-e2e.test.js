@@ -12,23 +12,23 @@
 
 jest.setTimeout(20000)
 
-var functionNode = require('node-red/nodes/core/core/80-function')
+const functionNode = require('node-red/nodes/core/core/80-function')
 
 // iiot opcua
-var injectNode = require('../../src/opcua-iiot-inject')
-var connectorNode = require('../../src/opcua-iiot-connector')
-var inputNode = require('../../src/opcua-iiot-read')
-var responseNode = require('../../src/opcua-iiot-response')
-var serverNode = require('../../src/opcua-iiot-server')
-var flexServerNode = require('../../src/opcua-iiot-flex-server')
+const injectNode = require('../../src/opcua-iiot-inject')
+const connectorNode = require('../../src/opcua-iiot-connector')
+const inputNode = require('../../src/opcua-iiot-read')
+const responseNode = require('../../src/opcua-iiot-response')
+const serverNode = require('../../src/opcua-iiot-server')
+const flexServerNode = require('../../src/opcua-iiot-flex-server')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var readNodesToLoad = [injectNode, functionNode, connectorNode, inputNode, responseNode, serverNode]
-var readNodesToLoadWithFlexServer = [injectNode, functionNode, connectorNode, inputNode, responseNode, flexServerNode]
+const readNodesToLoad = [injectNode, functionNode, connectorNode, inputNode, responseNode, serverNode]
+const readNodesToLoadWithFlexServer = [injectNode, functionNode, connectorNode, inputNode, responseNode, flexServerNode]
 
-var testReadFlow = [
+let testReadFlow = [
   {
     'id': 'n1rdf1',
     'type': 'OPCUA-IIoT-Inject',
@@ -50,7 +50,7 @@ var testReadFlow = [
     ],
     'wires': [['n2rdf1', 'n3rdf1']]
   },
-  {id: 'n2rdf1', type: 'helper'},
+  { id: 'n2rdf1', type: 'helper' },
   {
     'id': 'n3rdf1',
     'type': 'OPCUA-IIoT-Read',
@@ -65,7 +65,7 @@ var testReadFlow = [
     'parseStrings': false,
     'wires': [['n4rdf1', 'n5rdf1']]
   },
-  {id: 'n4rdf1', type: 'helper'},
+  { id: 'n4rdf1', type: 'helper' },
   {
     'id': 'n5rdf1',
     'type': 'OPCUA-IIoT-Response',
@@ -75,7 +75,7 @@ var testReadFlow = [
     'showErrors': false,
     'wires': [['n6rdf1']]
   },
-  {id: 'n6rdf1', type: 'helper'},
+  { id: 'n6rdf1', type: 'helper' },
   {
     'id': 'c1rdf1',
     'type': 'OPCUA-IIoT-Connector',
@@ -124,7 +124,7 @@ var testReadFlow = [
   }
 ]
 
-var testReadHistoryRangeFlow = [
+let testReadHistoryRangeFlow = [
   {
     'id': 'b6e5bc66.864128',
     'type': 'OPCUA-IIoT-Inject',
@@ -221,7 +221,7 @@ var testReadHistoryRangeFlow = [
       ]
     ]
   },
-  {id: 'nr1h', type: 'helper'},
+  { id: 'nr1h', type: 'helper' },
   {
     'id': 'dd2554f4.e88bd8',
     'type': 'OPCUA-IIoT-Response',
@@ -237,7 +237,7 @@ var testReadHistoryRangeFlow = [
       ]
     ]
   },
-  {id: 'nr2h', type: 'helper'},
+  { id: 'nr2h', type: 'helper' },
   {
     'id': 'ef9763f4.0e6728',
     'type': 'OPCUA-IIoT-Connector',
@@ -296,7 +296,7 @@ var testReadHistoryRangeFlow = [
   }
 ]
 
-var testReadFlexServerFlow = [
+let testReadFlexServerFlow = [
   {
     'id': 'n1rdf3',
     'type': 'OPCUA-IIoT-Inject',
@@ -318,7 +318,7 @@ var testReadFlexServerFlow = [
     ],
     'wires': [['n2rdf3', 'n3rdf3']]
   },
-  {id: 'n2rdf3', type: 'helper'},
+  { id: 'n2rdf3', type: 'helper' },
   {
     'id': 'n3rdf3',
     'type': 'OPCUA-IIoT-Read',
@@ -333,7 +333,7 @@ var testReadFlexServerFlow = [
     'parseStrings': false,
     'wires': [['n4rdf3', 'n5rdf3']]
   },
-  {id: 'n4rdf3', type: 'helper'},
+  { id: 'n4rdf3', type: 'helper' },
   {
     'id': 'n5rdf3',
     'type': 'OPCUA-IIoT-Response',
@@ -343,7 +343,7 @@ var testReadFlexServerFlow = [
     'showErrors': false,
     'wires': [['n6rdf3']]
   },
-  {id: 'n6rdf3', type: 'helper'},
+  { id: 'n6rdf3', type: 'helper' },
   {
     'id': 'c1rdf3',
     'type': 'OPCUA-IIoT-Connector',

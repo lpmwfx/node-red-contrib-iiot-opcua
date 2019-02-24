@@ -12,16 +12,16 @@
 
 jest.setTimeout(5000)
 
-var injectNode = require('node-red/nodes/core/core/20-inject')
-var functionNode = require('node-red/nodes/core/core/80-function')
-var browserNode = require('../src/opcua-iiot-browser')
+const injectNode = require('node-red/nodes/core/core/20-inject')
+const functionNode = require('node-red/nodes/core/core/80-function')
+const browserNode = require('../src/opcua-iiot-browser')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var browseNodesToLoad = [injectNode, functionNode, browserNode]
+const browseNodesToLoad = [injectNode, functionNode, browserNode]
 
-var testUnitBrowserFlow = [
+let testUnitBrowserFlow = [
   {
     'id': '4ac0b7c8.bebe18',
     'type': 'OPCUA-IIoT-Browser',
@@ -39,7 +39,7 @@ var testUnitBrowserFlow = [
       []
     ]
   },
-  {id: 'n1helper', type: 'helper'}
+  { id: 'n1helper', type: 'helper' }
 ]
 
 describe('OPC UA Browser node Unit Testing', function () {

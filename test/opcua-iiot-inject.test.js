@@ -12,12 +12,12 @@
 
 jest.setTimeout(10000)
 
-var inputNode = require('../src/opcua-iiot-inject')
+const inputNode = require('../src/opcua-iiot-inject')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var testInjectFlow = [
+let testInjectFlow = [
   {
     'id': 'n1ijf1',
     'type': 'OPCUA-IIoT-Inject',
@@ -39,10 +39,10 @@ var testInjectFlow = [
     ],
     'wires': [['n2ijf1']]
   },
-  {id: 'n2ijf1', type: 'helper'}
+  { id: 'n2ijf1', type: 'helper' }
 ]
 
-var testInjectWithDelayFlow = [
+let testInjectWithDelayFlow = [
   {
     'id': 'n1ijf2',
     'type': 'OPCUA-IIoT-Inject',
@@ -64,10 +64,10 @@ var testInjectWithDelayFlow = [
     ],
     'wires': [['n2ijf2']]
   },
-  {id: 'n2ijf2', type: 'helper'}
+  { id: 'n2ijf2', type: 'helper' }
 ]
 
-var testInjectWithLongDelayFlow = [
+let testInjectWithLongDelayFlow = [
   {
     'id': 'n1ijf3',
     'type': 'OPCUA-IIoT-Inject',
@@ -89,7 +89,7 @@ var testInjectWithLongDelayFlow = [
     ],
     'wires': [['n2ijf3']]
   },
-  {id: 'n2ijf3', type: 'helper'}
+  { id: 'n2ijf3', type: 'helper' }
 ]
 
 describe('OPC UA Inject node Unit Testing', function () {

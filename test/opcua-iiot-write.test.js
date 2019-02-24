@@ -12,18 +12,18 @@
 
 jest.setTimeout(5000)
 
-var injectNodeRedNode = require('node-red/nodes/core/core/20-inject')
-var functionNodeRedNode = require('node-red/nodes/core/core/80-function')
+const injectNodeRedNode = require('node-red/nodes/core/core/20-inject')
+const functionNodeRedNode = require('node-red/nodes/core/core/80-function')
 
 // iiot opcua
-var inputNode = require('../src/opcua-iiot-write')
+const inputNode = require('../src/opcua-iiot-write')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var writeNodesToLoad = [injectNodeRedNode, functionNodeRedNode, inputNode]
+const writeNodesToLoad = [injectNodeRedNode, functionNodeRedNode, inputNode]
 
-var writeUnitFlow = [
+let writeUnitFlow = [
   {
     'id': '34d2c6bc.43275b',
     'type': 'OPCUA-IIoT-Write',
@@ -71,7 +71,7 @@ describe('OPC UA Write node Unit Testing', function () {
       helper.load(writeNodesToLoad, writeUnitFlow, () => {
         let n1 = helper.getNode('34d2c6bc.43275b')
         if (n1) {
-          n1.bianco.iiot.handleWriteError(new Error('Testing Error To Handle'), {payload: {}})
+          n1.bianco.iiot.handleWriteError(new Error('Testing Error To Handle'), { payload: {} })
           done()
         }
       })

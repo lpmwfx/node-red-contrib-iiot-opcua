@@ -12,13 +12,13 @@
 
 jest.setTimeout(5000)
 
-var injectNode = require('node-red/nodes/core/core/20-inject')
-var inputNode = require('../src/opcua-iiot-node')
+const injectNode = require('node-red/nodes/core/core/20-inject')
+const inputNode = require('../src/opcua-iiot-node')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var testNodeFlow = [
+let testNodeFlow = [
   {
     'id': 'n1nf1',
     'type': 'inject',
@@ -37,7 +37,7 @@ var testNodeFlow = [
       ]
     ]
   },
-  {id: 'n2nf1', type: 'helper'},
+  { id: 'n2nf1', type: 'helper' },
   {
     'id': 'n3nf1',
     'type': 'OPCUA-IIoT-Node',
@@ -50,10 +50,10 @@ var testNodeFlow = [
     'showErrors': false,
     wires: [['n4nf1']]
   },
-  {id: 'n4nf1', type: 'helper'}
+  { id: 'n4nf1', type: 'helper' }
 ]
 
-var testNodeEventFlow = [
+let testNodeEventFlow = [
   {
     'id': 'n1nf2',
     'type': 'inject',
@@ -72,7 +72,7 @@ var testNodeEventFlow = [
       ]
     ]
   },
-  {id: 'n2nf2', type: 'helper'},
+  { id: 'n2nf2', type: 'helper' },
   {
     'id': 'n3nf2',
     'type': 'OPCUA-IIoT-Node',
@@ -89,10 +89,10 @@ var testNodeEventFlow = [
       ]
     ]
   },
-  {id: 'n4nf2', type: 'helper'}
+  { id: 'n4nf2', type: 'helper' }
 ]
 
-var testEventValueNumberFlowPayload = [
+let testEventValueNumberFlowPayload = [
   {
     'id': 'n1nf3',
     'type': 'inject',
@@ -111,7 +111,7 @@ var testEventValueNumberFlowPayload = [
       ]
     ]
   },
-  {id: 'n2nf3', type: 'helper'},
+  { id: 'n2nf3', type: 'helper' },
   {
     'id': 'n3nf3',
     'type': 'OPCUA-IIoT-Node',
@@ -128,10 +128,10 @@ var testEventValueNumberFlowPayload = [
       ]
     ]
   },
-  {id: 'n4nf3', type: 'helper'}
+  { id: 'n4nf3', type: 'helper' }
 ]
 
-var testNodeEventWithPayloadFlow = [
+let testNodeEventWithPayloadFlow = [
   {
     'id': 'n1',
     'type': 'inject',
@@ -150,7 +150,7 @@ var testNodeEventWithPayloadFlow = [
       ]
     ]
   },
-  {id: 'n2', type: 'helper'},
+  { id: 'n2', type: 'helper' },
   {
     'id': 'n3',
     'type': 'OPCUA-IIoT-Node',
@@ -167,7 +167,7 @@ var testNodeEventWithPayloadFlow = [
       ]
     ]
   },
-  {id: 'n4', type: 'helper'}
+  { id: 'n4', type: 'helper' }
 ]
 
 describe('OPC UA Node node Unit Testing', function () {
@@ -204,7 +204,7 @@ describe('OPC UA Node node Unit Testing', function () {
           'name': 'TestReadWrite',
           'topic': 'TestTopicNode',
           'showErrors': false,
-          'wires': [[]]}
+          'wires': [[]] }
         ],
         function () {
           let nodeUnderTest = helper.getNode('3a234e92.cbc0f2')
@@ -232,7 +232,7 @@ describe('OPC UA Node node Unit Testing', function () {
       helper.load([injectNode, inputNode], testNodeFlow, function () {
         let n4 = helper.getNode('n4nf1')
         n4.on('input', function (msg) {
-          expect(msg.addressSpaceItems).toMatchObject([{'name': 'TestReadWrite', 'nodeId': 'ns=2;s=TestReadWrite', 'datatypeName': 'String'}])
+          expect(msg.addressSpaceItems).toMatchObject([{ 'name': 'TestReadWrite', 'nodeId': 'ns=2;s=TestReadWrite', 'datatypeName': 'String' }])
           expect(msg.topic).toBe('TestTopicNode')
           done()
         })

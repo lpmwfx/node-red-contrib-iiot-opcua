@@ -12,21 +12,21 @@
 
 jest.setTimeout(12000)
 
-var injectNode = require('../../src/opcua-iiot-inject')
-var connectorNode = require('../../src/opcua-iiot-connector')
-var responseNode = require('../../src/opcua-iiot-response')
-var readNode = require('../../src/opcua-iiot-read')
-var listenerNode = require('../../src/opcua-iiot-listener')
-var crawlerNode = require('../../src/opcua-iiot-crawler')
-var serverNode = require('../../src/opcua-iiot-server')
-var filterNode = require('../../src/opcua-iiot-result-filter')
+const injectNode = require('../../src/opcua-iiot-inject')
+const connectorNode = require('../../src/opcua-iiot-connector')
+const responseNode = require('../../src/opcua-iiot-response')
+const readNode = require('../../src/opcua-iiot-read')
+const listenerNode = require('../../src/opcua-iiot-listener')
+const crawlerNode = require('../../src/opcua-iiot-crawler')
+const serverNode = require('../../src/opcua-iiot-server')
+const filterNode = require('../../src/opcua-iiot-result-filter')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var testFilterNodes = [injectNode, connectorNode, readNode, responseNode, serverNode, crawlerNode, filterNode, listenerNode]
+const testFilterNodes = [injectNode, connectorNode, readNode, responseNode, serverNode, crawlerNode, filterNode, listenerNode]
 
-var testFilterReadFlow = [
+let testFilterReadFlow = [
   {
     'id': 'ac8b3930.dce72',
     'type': 'OPCUA-IIoT-Inject',
@@ -115,7 +115,7 @@ var testFilterReadFlow = [
       ['n1frf1']
     ]
   },
-  {id: 'n1frf1', type: 'helper'},
+  { id: 'n1frf1', type: 'helper' },
   {
     'id': '370c0d61.becf9a',
     'type': 'OPCUA-IIoT-Connector',
@@ -181,7 +181,7 @@ var testFilterReadFlow = [
   }
 ]
 
-var testListenerFilterFlow = [
+let testListenerFilterFlow = [
   {
     'id': 'b8ff62e0.eccb98',
     'type': 'OPCUA-IIoT-Inject',
@@ -265,7 +265,7 @@ var testListenerFilterFlow = [
       ['n1frf2']
     ]
   },
-  {id: 'n1frf2', type: 'helper'},
+  { id: 'n1frf2', type: 'helper' },
   {
     'id': 'b784203d.460118',
     'type': 'OPCUA-IIoT-Result-Filter',
@@ -288,7 +288,7 @@ var testListenerFilterFlow = [
       ['n2frf2']
     ]
   },
-  {id: 'n2frf2', type: 'helper'},
+  { id: 'n2frf2', type: 'helper' },
   {
     'id': 'ea3839ac.fb08c',
     'type': 'OPCUA-IIoT-Result-Filter',
@@ -311,7 +311,7 @@ var testListenerFilterFlow = [
       ['n3frf2']
     ]
   },
-  {id: 'n3frf2', type: 'helper'},
+  { id: 'n3frf2', type: 'helper' },
   {
     'id': '771dd0d1.f27d5',
     'type': 'OPCUA-IIoT-Result-Filter',
@@ -334,7 +334,7 @@ var testListenerFilterFlow = [
       ['n4frf2']
     ]
   },
-  {id: 'n4frf2', type: 'helper'},
+  { id: 'n4frf2', type: 'helper' },
   {
     'id': '670d2f00.3b53d',
     'type': 'OPCUA-IIoT-Connector',
@@ -401,7 +401,7 @@ var testListenerFilterFlow = [
   }
 ]
 
-var testCrawlerFilterFlow = [
+let testCrawlerFilterFlow = [
   {
     'id': '651594be.d15a94',
     'type': 'OPCUA-IIoT-Inject',
@@ -488,7 +488,7 @@ var testCrawlerFilterFlow = [
       ]
     ]
   },
-  {id: 'n1crf3', type: 'helper'},
+  { id: 'n1crf3', type: 'helper' },
   {
     'id': '9428fd82.ba05b8',
     'type': 'OPCUA-IIoT-Connector',

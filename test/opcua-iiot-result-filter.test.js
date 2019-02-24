@@ -12,14 +12,14 @@
 
 jest.setTimeout(10000)
 
-var injectNode = require('node-red/nodes/core/core/20-inject')
-var functionNode = require('node-red/nodes/core/core/80-function')
-var inputNode = require('../src/opcua-iiot-result-filter')
+const injectNode = require('node-red/nodes/core/core/20-inject')
+const functionNode = require('node-red/nodes/core/core/80-function')
+const inputNode = require('../src/opcua-iiot-result-filter')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var readTestFlowPayload = [
+let readTestFlowPayload = [
   {
     id: 'n1rff1',
     type: 'inject',
@@ -33,7 +33,7 @@ var readTestFlowPayload = [
     onceDelay: 0.1,
     wires: [['n2rff1', 'n3rff1']]
   },
-  {id: 'n2rff1', type: 'helper'},
+  { id: 'n2rff1', type: 'helper' },
   {
     id: 'n3rff1',
     type: 'function',
@@ -43,8 +43,8 @@ var readTestFlowPayload = [
     noerr: 0,
     wires: [['n4rff1', 'n5rff1']]
   },
-  {id: 'n4rff1', type: 'helper'},
-  {id: 'n5rff1',
+  { id: 'n4rff1', type: 'helper' },
+  { id: 'n5rff1',
     'type': 'OPCUA-IIoT-Result-Filter',
     'nodeId': 'ns=1;s=TemperatureAnalogItem',
     'datatype': 'Double',
@@ -63,10 +63,10 @@ var readTestFlowPayload = [
     'showErrors': true,
     'wires': [['n6rff1']]
   },
-  {id: 'n6rff1', type: 'helper'}
+  { id: 'n6rff1', type: 'helper' }
 ]
 
-var listenTestFlowPayload = [
+let listenTestFlowPayload = [
   {
     'id': 'n1rff2',
     'type': 'inject',
@@ -80,7 +80,7 @@ var listenTestFlowPayload = [
     'onceDelay': 0.1,
     'wires': [['n2rff2', 'n3rff2']]
   },
-  {id: 'n2rff2', type: 'helper'},
+  { id: 'n2rff2', type: 'helper' },
   {
     'id': 'n3rff2',
     'type': 'function',
@@ -90,8 +90,8 @@ var listenTestFlowPayload = [
     'noerr': 0,
     'wires': [['n4rff2', 'n5rff2']]
   },
-  {id: 'n4rff2', type: 'helper'},
-  {id: 'n5rff2',
+  { id: 'n4rff2', type: 'helper' },
+  { id: 'n5rff2',
     'type': 'OPCUA-IIoT-Result-Filter',
     'nodeId': 'ns=1;s=Pressure',
     'datatype': 'Double',
@@ -110,10 +110,10 @@ var listenTestFlowPayload = [
     'showErrors': true,
     'wires': [['n6rff2']]
   },
-  {id: 'n6rff2', type: 'helper'}
+  { id: 'n6rff2', type: 'helper' }
 ]
 
-var listenTestFlowWithPrecisionPayload = [
+let listenTestFlowWithPrecisionPayload = [
   {
     'id': 'n1rff3',
     'type': 'inject',
@@ -127,7 +127,7 @@ var listenTestFlowWithPrecisionPayload = [
     'onceDelay': 0.1,
     'wires': [['n2rff3', 'n3rff3']]
   },
-  {id: 'n2rff3', type: 'helper'},
+  { id: 'n2rff3', type: 'helper' },
   {
     'id': 'n3rff3',
     'type': 'function',
@@ -137,8 +137,8 @@ var listenTestFlowWithPrecisionPayload = [
     'noerr': 0,
     'wires': [['n4rff3', 'n5rff3']]
   },
-  {id: 'n4rff3', type: 'helper'},
-  {id: 'n5rff3',
+  { id: 'n4rff3', type: 'helper' },
+  { id: 'n5rff3',
     'type': 'OPCUA-IIoT-Result-Filter',
     'nodeId': 'ns=1;s=Pressure',
     'datatype': 'Double',
@@ -157,10 +157,10 @@ var listenTestFlowWithPrecisionPayload = [
     'showErrors': true,
     'wires': [['n6rff3']]
   },
-  {id: 'n6rff3', type: 'helper'}
+  { id: 'n6rff3', type: 'helper' }
 ]
 
-var writeTestFlowPayload = [
+let writeTestFlowPayload = [
   {
     id: 'n1rff4',
     type: 'inject',
@@ -174,7 +174,7 @@ var writeTestFlowPayload = [
     onceDelay: 0.1,
     wires: [['n2rff4', 'n3rff4']]
   },
-  {id: 'n2rff4', type: 'helper'},
+  { id: 'n2rff4', type: 'helper' },
   {
     id: 'n3rff4',
     type: 'function',
@@ -184,8 +184,8 @@ var writeTestFlowPayload = [
     noerr: 0,
     wires: [['n4rff4', 'n5rff4']]
   },
-  {id: 'n4rff4', type: 'helper'},
-  {id: 'n5rff4',
+  { id: 'n4rff4', type: 'helper' },
+  { id: 'n5rff4',
     'type': 'OPCUA-IIoT-Result-Filter',
     'nodeId': 'ns=1;s=TestReadWrite',
     'datatype': 'Double',
@@ -204,10 +204,10 @@ var writeTestFlowPayload = [
     'showErrors': false,
     'wires': [['n6rff4']]
   },
-  {id: 'n6rff4', type: 'helper'}
+  { id: 'n6rff4', type: 'helper' }
 ]
 
-var writeTestValueCheckFlowPayload = [
+let writeTestValueCheckFlowPayload = [
   {
     id: 'n1rff5',
     type: 'inject',
@@ -221,7 +221,7 @@ var writeTestValueCheckFlowPayload = [
     onceDelay: 0.2,
     wires: [['n2rff5', 'n3rff5']]
   },
-  {id: 'n2rff5', type: 'helper'},
+  { id: 'n2rff5', type: 'helper' },
   {
     id: 'n3rff5',
     type: 'function',
@@ -231,7 +231,7 @@ var writeTestValueCheckFlowPayload = [
     noerr: 0,
     wires: [['n4rff5', 'n5rff5']]
   },
-  {id: 'n4rff5', type: 'helper'},
+  { id: 'n4rff5', type: 'helper' },
   {
     id: 'n5rff5',
     'type': 'OPCUA-IIoT-Result-Filter',
@@ -252,7 +252,7 @@ var writeTestValueCheckFlowPayload = [
     'showErrors': false,
     'wires': [['n6rff5']]
   },
-  {id: 'n6rff5', type: 'helper'}
+  { id: 'n6rff5', type: 'helper' }
 ]
 
 describe('OPC UA Result Filter node Testing', function () {
@@ -323,7 +323,7 @@ describe('OPC UA Result Filter node Testing', function () {
       helper.load([injectNode, functionNode, inputNode], readTestFlowPayload, function () {
         let n2 = helper.getNode('n2rff1')
         n2.on('input', function (msg) {
-          expect(msg.payload).toMatchObject([{'node': 'ns=1;s=TemperatureAnalogItem', 'nodeId': 'ns=1;s=TemperatureAnalogItem', 'nodeClass': 2, 'browseName': {'namespaceIndex': 0, 'name': 'TemperatureAnalogItem'}, 'displayName': {'text': 'TemperatureAnalogItem'}, 'description': {}, 'writeMask': 0, 'userWriteMask': 0, 'value': 16.041979, 'dataType': 'Double', 'valueRank': -1, 'arrayDimensions': {}, 'accessLevel': 3, 'userAccessLevel': 3, 'minimumSamplingInterval': 0, 'historizing': false, 'statusCode': {'value': 0, 'description': 'No Error', 'name': 'Good'}}])
+          expect(msg.payload).toMatchObject([{ 'node': 'ns=1;s=TemperatureAnalogItem', 'nodeId': 'ns=1;s=TemperatureAnalogItem', 'nodeClass': 2, 'browseName': { 'namespaceIndex': 0, 'name': 'TemperatureAnalogItem' }, 'displayName': { 'text': 'TemperatureAnalogItem' }, 'description': {}, 'writeMask': 0, 'userWriteMask': 0, 'value': 16.041979, 'dataType': 'Double', 'valueRank': -1, 'arrayDimensions': {}, 'accessLevel': 3, 'userAccessLevel': 3, 'minimumSamplingInterval': 0, 'historizing': false, 'statusCode': { 'value': 0, 'description': 'No Error', 'name': 'Good' } }])
           done()
         })
       })
@@ -367,7 +367,7 @@ describe('OPC UA Result Filter node Testing', function () {
       helper.load([injectNode, functionNode, inputNode], listenTestFlowPayload, function () {
         let n2 = helper.getNode('n2rff2')
         n2.on('input', function (msg) {
-          expect(msg.payload).toMatchObject({'value': {'dataType': 'Double', 'arrayType': 'Scalar', 'value': 16.041979}, 'statusCode': {'value': 0, 'description': 'No Error', 'name': 'Good'}, 'sourceTimestamp': '2018-03-13T21:43:10.470Z', 'sourcePicoseconds': 0, 'serverTimestamp': '2018-03-13T21:43:11.051Z', 'serverPicoseconds': 3})
+          expect(msg.payload).toMatchObject({ 'value': { 'dataType': 'Double', 'arrayType': 'Scalar', 'value': 16.041979 }, 'statusCode': { 'value': 0, 'description': 'No Error', 'name': 'Good' }, 'sourceTimestamp': '2018-03-13T21:43:10.470Z', 'sourcePicoseconds': 0, 'serverTimestamp': '2018-03-13T21:43:11.051Z', 'serverPicoseconds': 3 })
           done()
         })
       })
@@ -566,7 +566,7 @@ describe('OPC UA Result Filter node Testing', function () {
     it('should return given object on missing datatype input to convertResultValue', function (done) {
       helper.load([injectNode, functionNode, inputNode], writeTestValueCheckFlowPayload, function () {
         let n5 = helper.getNode('n5rff5')
-        expect(n5.bianco.iiot.convertResultValue({ payload: {test: 'Test'} })).toMatchObject({test: 'Test'})
+        expect(n5.bianco.iiot.convertResultValue({ payload: { test: 'Test' } })).toMatchObject({ test: 'Test' })
         done()
       })
     })

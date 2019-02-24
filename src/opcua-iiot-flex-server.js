@@ -180,6 +180,8 @@ module.exports = function (RED) {
 
     node.bianco.iiot.postInitialize = function () {
       node.bianco.iiot.eventObjects = {} // event objects should stay in memory
+      let addressSpace = node.bianco.iiot.opcuaServer.engine.addressSpace
+      addressSpace.registerNamespace('http://biancoroyal.de/UA/IIoT/')
       coreServer.constructAddressSpaceFromScript(node.bianco.iiot.opcuaServer, node.bianco.iiot.constructAddressSpaceScript, node.bianco.iiot.eventObjects)
         .then(function () {
           coreServer.start(node.bianco.iiot.opcuaServer, node).then(function () {
@@ -240,11 +242,13 @@ module.exports = function (RED) {
     })
 
     node.on('close', function (done) {
-      node.bianco.iiot.closeServer(() => {
-        coreServer.flex.internalDebugLog('Close Server Node')
-        coreServer.core.resetBiancoNode(node)
-        done()
-      })
+      setTimeout(() => {
+        node.bianco.iiot.closeServer(() => {
+          coreServer.flex.internalDebugLog('Close Server Node')
+          coreServer.core.resetBiancoNode(node)
+          done()
+        })
+      }, node.delayToClose)
     })
 
     node.on('shutdown', () => {
@@ -260,12 +264,12 @@ module.exports = function (RED) {
 
       if (node.bianco.iiot.opcuaServer) {
         node.bianco.iiot.opcuaServer.removeAllListeners()
-        node.bianco.iiot.opcuaServer.shutdown(node.delayToClose, () => {
+        node.bianco.iiot.opcuaServer.shutdown(node.serverShutdownTimeout, () => {
           coreServer.internalDebugLog('Server shutdown is done')
           done()
         })
       } else {
-        setTimeout(node.delayToClose, done)
+        done()
       }
     }
   }

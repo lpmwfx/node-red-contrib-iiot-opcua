@@ -12,23 +12,23 @@
 
 jest.setTimeout(20000)
 
-var injectNodeRed = require('node-red/nodes/core/core/20-inject')
-var functionNode = require('node-red/nodes/core/core/80-function')
+const injectNodeRed = require('node-red/nodes/core/core/20-inject')
+const functionNode = require('node-red/nodes/core/core/80-function')
 
 // opcua iiot
-var injectNode = require('../../src/opcua-iiot-inject')
-var connectorNode = require('../../src/opcua-iiot-connector')
-var responseNode = require('../../src/opcua-iiot-response')
-var serverNode = require('../../src/opcua-iiot-server')
-var inputNode = require('../../src/opcua-iiot-method-caller')
+const injectNode = require('../../src/opcua-iiot-inject')
+const connectorNode = require('../../src/opcua-iiot-connector')
+const responseNode = require('../../src/opcua-iiot-response')
+const serverNode = require('../../src/opcua-iiot-server')
+const inputNode = require('../../src/opcua-iiot-method-caller')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var methodCallerNodesToLoad = [injectNode, connectorNode, inputNode, responseNode, serverNode]
-var eventNodesToLoad = [injectNodeRed, functionNode, connectorNode, inputNode, responseNode, serverNode]
+const methodCallerNodesToLoad = [injectNode, connectorNode, inputNode, responseNode, serverNode]
+const eventNodesToLoad = [injectNodeRed, functionNode, connectorNode, inputNode, responseNode, serverNode]
 
-var testMethodFlowPayload = [
+let testMethodFlowPayload = [
   {
     'id': 'n1mcf1',
     'type': 'OPCUA-IIoT-Inject',
@@ -49,7 +49,7 @@ var testMethodFlowPayload = [
       ]
     ]
   },
-  {id: 'n2mcf1', type: 'helper'},
+  { id: 'n2mcf1', type: 'helper' },
   {
     'id': 'n3mcf1',
     'type': 'OPCUA-IIoT-Method-Caller',
@@ -82,7 +82,7 @@ var testMethodFlowPayload = [
       ]
     ]
   },
-  {id: 'n4mcf1', type: 'helper'},
+  { id: 'n4mcf1', type: 'helper' },
   {
     'id': 'n5mcf1',
     'type': 'OPCUA-IIoT-Response',
@@ -102,8 +102,8 @@ var testMethodFlowPayload = [
     'showErrors': false,
     'wires': [['n7mcf1']]
   },
-  {id: 'n6mcf1', type: 'helper'},
-  {id: 'n7mcf1', type: 'helper'},
+  { id: 'n6mcf1', type: 'helper' },
+  { id: 'n7mcf1', type: 'helper' },
   {
     'id': 'c1mcf1',
     'type': 'OPCUA-IIoT-Connector',
@@ -149,7 +149,7 @@ var testMethodFlowPayload = [
   }
 ]
 
-var testMethodInjectFlowPayload = [
+let testMethodInjectFlowPayload = [
   {
     'id': 'n1mcf2',
     'type': 'inject',
@@ -168,7 +168,7 @@ var testMethodInjectFlowPayload = [
       ]
     ]
   },
-  {id: 'n2mcf2', type: 'helper'},
+  { id: 'n2mcf2', type: 'helper' },
   {
     'id': 'n3mcf2',
     'type': 'function',
@@ -185,7 +185,7 @@ var testMethodInjectFlowPayload = [
       ]
     ]
   },
-  {id: 'n4mcf2', type: 'helper'},
+  { id: 'n4mcf2', type: 'helper' },
   {
     'id': 'n5mcf2',
     'type': 'OPCUA-IIoT-Method-Caller',
@@ -217,7 +217,7 @@ var testMethodInjectFlowPayload = [
       ]
     ]
   },
-  {id: 'n6mcf2', type: 'helper'},
+  { id: 'n6mcf2', type: 'helper' },
   {
     'id': 'n7mcf2',
     'type': 'OPCUA-IIoT-Response',
@@ -231,7 +231,7 @@ var testMethodInjectFlowPayload = [
       ['n8mcf2']
     ]
   },
-  {id: 'n8mcf2', type: 'helper'},
+  { id: 'n8mcf2', type: 'helper' },
   {
     'id': 'c1mcf2',
     'type': 'OPCUA-IIoT-Connector',
@@ -331,7 +331,7 @@ describe('OPC UA Method Caller node e2e Testing', function () {
         n6.on('input', function (msg) {
           expect(msg.nodetype).toBe('method')
           expect(msg.entryStatus).toMatchObject([1, 0, 0])
-          expect(msg.payload).toMatchObject([{'statusCode': {'value': 0, 'description': 'No Error', 'name': 'Good'}, 'outputArguments': [{'dataType': 'String', 'arrayType': 'Array', 'value': ['Whaff!!!!!', 'Whaff!!!!!', 'Whaff!!!!!']}]}])
+          expect(msg.payload).toMatchObject([{ 'statusCode': { 'value': 0, 'description': 'No Error', 'name': 'Good' }, 'outputArguments': [{ 'dataType': 'String', 'arrayType': 'Array', 'value': ['Whaff!!!!!', 'Whaff!!!!!', 'Whaff!!!!!'] }] }])
           done()
         })
       })

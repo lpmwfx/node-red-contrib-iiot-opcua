@@ -12,16 +12,16 @@
 
 jest.setTimeout(10000)
 
-var injectNode = require('node-red/nodes/core/core/20-inject')
-var functionNode = require('node-red/nodes/core/core/80-function')
-var flexServerNode = require('../src/opcua-iiot-flex-server')
+const injectNode = require('node-red/nodes/core/core/20-inject')
+const functionNode = require('node-red/nodes/core/core/80-function')
+const flexServerNode = require('../src/opcua-iiot-flex-server')
 
-var flexServerFlowNodes = [injectNode, functionNode, flexServerNode]
+const flexServerFlowNodes = [injectNode, functionNode, flexServerNode]
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var testFlexServerFlow = [
+let testFlexServerFlow = [
   {
     'id': '85d5edb0.385143',
     'type': 'OPCUA-IIoT-Flex-Server',
@@ -56,7 +56,7 @@ var testFlexServerFlow = [
   }
 ]
 
-var testFlexServerWithUserAndISA95 = [
+let testFlexServerWithUserAndISA95 = [
   {
     'id': '16093040.5dab23',
     'type': 'OPCUA-IIoT-Flex-Server',

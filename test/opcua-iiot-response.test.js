@@ -12,16 +12,16 @@
 
 jest.setTimeout(5000)
 
-var injectNode = require('node-red/nodes/core/core/20-inject')
-var functionNode = require('node-red/nodes/core/core/80-function')
-var responseNode = require('../src/opcua-iiot-response')
+const injectNode = require('node-red/nodes/core/core/20-inject')
+const functionNode = require('node-red/nodes/core/core/80-function')
+const responseNode = require('../src/opcua-iiot-response')
 
-var responseFlowNodes = [injectNode, functionNode, responseNode]
+const responseFlowNodes = [injectNode, functionNode, responseNode]
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var testResponseFlow = [
+let testResponseFlow = [
   {
     'id': '76202549.fd7c1c',
     'type': 'OPCUA-IIoT-Response',
@@ -43,7 +43,7 @@ var testResponseFlow = [
       ]
     ]
   },
-  {id: 'n1rh', type: 'helper'},
+  { id: 'n1rh', type: 'helper' },
   {
     'id': '9ed1998a.92f74',
     'type': 'inject',
@@ -76,7 +76,7 @@ var testResponseFlow = [
   }
 ]
 
-var testCompressedResponseFlow = [
+let testCompressedResponseFlow = [
   {
     'id': '76202549.fd7c1c',
     'type': 'OPCUA-IIoT-Response',
@@ -97,7 +97,7 @@ var testCompressedResponseFlow = [
       ]
     ]
   },
-  {id: 'n1rh', type: 'helper'},
+  { id: 'n1rh', type: 'helper' },
   {
     'id': '9ed1998a.92f74',
     'type': 'inject',
@@ -197,7 +197,7 @@ describe('OPC UA Response node Unit Testing', function () {
         function () {
           let nodeUnderTest = helper.getNode('76202549.fd7c1c')
           expect(nodeUnderTest).toBeDefined()
-          nodeUnderTest.bianco.iiot.handleNodeTypeOfMsg({payload: {}})
+          nodeUnderTest.bianco.iiot.handleNodeTypeOfMsg({ payload: {} })
           done()
         })
     })

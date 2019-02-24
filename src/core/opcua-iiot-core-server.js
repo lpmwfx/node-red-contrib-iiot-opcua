@@ -79,6 +79,7 @@ de.biancoroyal.opcua.iiot.core.server.constructAddressSpace = function (server, 
 
       let coreServer = de.biancoroyal.opcua.iiot.core.server
       let addressSpace = server.engine.addressSpace
+      addressSpace.registerNamespace('http://biancoroyal.de/UA/IIoT/')
       const namespace = addressSpace.getOwnNamespace()
 
       if (!addressSpace) {
@@ -573,9 +574,12 @@ de.biancoroyal.opcua.iiot.core.server.readConfigOfServerNode = function (node, c
   node.maxConnectionsPerEndpoint = parseInt(config.maxConnectionsPerEndpoint) || 10
   node.maxAllowedSubscriptionNumber = parseInt(config.maxAllowedSubscriptionNumber) || 50
   node.maxNodesPerRead = config.maxNodesPerRead || 1000
+  node.maxNodesPerWrite = config.maxNodesPerWrite || 1000
+  node.maxNodesPerHistoryReadData = config.maxNodesPerHistoryReadData || 100
   node.maxNodesPerBrowse = config.maxNodesPerBrowse || 2000
 
   node.delayToClose = config.delayToClose || 1000
+  node.serverShutdownTimeout = config.serverShutdownTimeout || 3000
   node.showStatusActivities = config.showStatusActivities
   node.showErrors = config.showErrors
 
@@ -678,17 +682,17 @@ de.biancoroyal.opcua.iiot.core.server.initRegisterServerMethod = function (node)
   node.bianco.iiot.opcuaServer = null
 
   if (!node.registerServerMethod) {
-    node.registerServerMethod = this.core.nodeOPCUA.RegisterServerMethod.HIDDEN
+    node.registerServerMethod = this.core.nodeOPCUA.RegisterServerMethod.LDS
   } else {
     switch (parseInt(node.registerServerMethod)) {
+      case 1:
+        node.registerServerMethod = this.core.nodeOPCUA.RegisterServerMethod.HIDDEN
+        break
       case 2:
         node.registerServerMethod = this.core.nodeOPCUA.RegisterServerMethod.MDNS
         break
-      case 3:
-        node.registerServerMethod = this.core.nodeOPCUA.RegisterServerMethod.LDS
-        break
       default:
-        node.registerServerMethod = this.core.nodeOPCUA.RegisterServerMethod.HIDDEN
+        node.registerServerMethod = this.core.nodeOPCUA.RegisterServerMethod.LDS
     }
   }
   return node
@@ -857,8 +861,8 @@ de.biancoroyal.opcua.iiot.core.server.buildServerOptions = function (node, prefi
       maxHistoryContinuationPoints: 10,
       operationLimits: {
         maxNodesPerRead: node.maxNodesPerRead,
-        maxNodesPerWrite: node.maxNodesPerRead,
-        maxNodesPerHistoryReadData: 100,
+        maxNodesPerWrite: node.maxNodesPerWrite,
+        maxNodesPerHistoryReadData: node.maxNodesPerHistoryReadData,
         maxNodesPerBrowse: node.maxNodesPerBrowse
       }
     },

@@ -96,7 +96,7 @@ describe('OPC UA Core Client', function () {
 
   describe('basic functions', function () {
     it('should stringify formattedt', function (done) {
-      let objectData = {test: 'test', testFolder: {name: ''}}
+      let objectData = { test: 'test', testFolder: { name: '' } }
       let sut = coreClient.stringifyFormatted(objectData)
       assert.equal(sut, JSON.stringify(objectData, null, 2))
       done()

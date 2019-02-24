@@ -12,18 +12,18 @@
 
 jest.setTimeout(20000)
 
-var injectNode = require('../../src/opcua-iiot-inject')
-var connectorNode = require('../../src/opcua-iiot-connector')
-var inputNode = require('../../src/opcua-iiot-crawler')
-var serverNode = require('../../src/opcua-iiot-server')
-var responseNode = require('../../src/opcua-iiot-response')
+const injectNode = require('../../src/opcua-iiot-inject')
+const connectorNode = require('../../src/opcua-iiot-connector')
+const inputNode = require('../../src/opcua-iiot-crawler')
+const serverNode = require('../../src/opcua-iiot-server')
+const responseNode = require('../../src/opcua-iiot-response')
 
-var helper = require('node-red-node-test-helper')
+const helper = require('node-red-node-test-helper')
 helper.init(require.resolve('node-red'))
 
-var crawlerNodesToLoad = [injectNode, connectorNode, inputNode, serverNode, responseNode]
+const crawlerNodesToLoad = [injectNode, connectorNode, inputNode, serverNode, responseNode]
 
-var testCrawlerFlow = [
+let testCrawlerFlow = [
   {
     'id': 'ec2b4f2b.59a9e',
     'type': 'OPCUA-IIoT-Inject',
@@ -49,7 +49,7 @@ var testCrawlerFlow = [
       ]
     ]
   },
-  {id: 'n2f1', type: 'helper'},
+  { id: 'n2f1', type: 'helper' },
   {
     'id': 'n3f1',
     'type': 'OPCUA-IIoT-Crawler',
@@ -62,7 +62,7 @@ var testCrawlerFlow = [
     'filters': [],
     'wires': [['n4f1']]
   },
-  {id: 'n4f1', type: 'helper'},
+  { id: 'n4f1', type: 'helper' },
   {
     'id': '6aff8d91.2081b4',
     'type': 'OPCUA-IIoT-Server',
@@ -111,7 +111,7 @@ var testCrawlerFlow = [
   }
 ]
 
-var testCrawlerJustValueFlow = [
+let testCrawlerJustValueFlow = [
   {
     'id': 'n1f2',
     'type': 'OPCUA-IIoT-Inject',
@@ -137,7 +137,7 @@ var testCrawlerJustValueFlow = [
       ]
     ]
   },
-  {id: 'n2f2', type: 'helper'},
+  { id: 'n2f2', type: 'helper' },
   {
     'id': 'n3f2',
     'type': 'OPCUA-IIoT-Crawler',
@@ -154,7 +154,7 @@ var testCrawlerJustValueFlow = [
       ]
     ]
   },
-  {id: 'n4f2', type: 'helper'},
+  { id: 'n4f2', type: 'helper' },
   {
     'id': 's1f2',
     'type': 'OPCUA-IIoT-Server',
@@ -203,7 +203,7 @@ var testCrawlerJustValueFlow = [
   }
 ]
 
-var testCrawlerJustValueSingleFlow = [
+let testCrawlerJustValueSingleFlow = [
   {
     'id': 'n1f3',
     'type': 'OPCUA-IIoT-Inject',
@@ -229,7 +229,7 @@ var testCrawlerJustValueSingleFlow = [
       ]
     ]
   },
-  {id: 'n2f3', type: 'helper'},
+  { id: 'n2f3', type: 'helper' },
   {
     'id': 'n3f3',
     'type': 'OPCUA-IIoT-Crawler',
@@ -246,7 +246,7 @@ var testCrawlerJustValueSingleFlow = [
       ]
     ]
   },
-  {id: 'n4f3', type: 'helper'},
+  { id: 'n4f3', type: 'helper' },
   {
     'id': 's1f3',
     'type': 'OPCUA-IIoT-Server',
@@ -295,7 +295,7 @@ var testCrawlerJustValueSingleFlow = [
   }
 ]
 
-var testCrawlerJustValueSingleFilteredFlow = [
+let testCrawlerJustValueSingleFilteredFlow = [
   {
     'id': 'n1f4',
     'type': 'OPCUA-IIoT-Inject',
@@ -321,7 +321,7 @@ var testCrawlerJustValueSingleFilteredFlow = [
       ]
     ]
   },
-  {id: 'n2f4', type: 'helper'},
+  { id: 'n2f4', type: 'helper' },
   {
     'id': 'n3f4',
     'type': 'OPCUA-IIoT-Crawler',
@@ -331,14 +331,14 @@ var testCrawlerJustValueSingleFilteredFlow = [
     'singleResult': true,
     'showStatusActivities': false,
     'showErrors': false,
-    'filters': [{'name': 'Limits', 'nodeId': 'ns=0;i=11704'}],
+    'filters': [{ 'name': 'Limits', 'nodeId': 'ns=0;i=11704' }],
     'wires': [
       [
         'n4f4'
       ]
     ]
   },
-  {id: 'n4f4', type: 'helper'},
+  { id: 'n4f4', type: 'helper' },
   {
     'id': 's1f4',
     'type': 'OPCUA-IIoT-Server',
@@ -448,7 +448,7 @@ let testCrawlerWithFilter = [
       ]
     ]
   },
-  {id: 'h1ff', type: 'helper'},
+  { id: 'h1ff', type: 'helper' },
   {
     'id': '71a3171a.97466',
     'type': 'OPCUA-IIoT-Connector',
@@ -505,7 +505,7 @@ let testCrawlerWithFilter = [
   }
 ]
 
-var testCrawlerWithFilterNS0 = [
+let testCrawlerWithFilterNS0 = [
   {
     'id': 'bb36ac76.436a7',
     'type': 'OPCUA-IIoT-Inject',
@@ -532,7 +532,7 @@ var testCrawlerWithFilterNS0 = [
       ]
     ]
   },
-  {id: 'nc1h', type: 'helper'},
+  { id: 'nc1h', type: 'helper' },
   {
     'id': '23fcf6d.13b5d8a',
     'type': 'OPCUA-IIoT-Crawler',
@@ -568,7 +568,7 @@ var testCrawlerWithFilterNS0 = [
       ]
     ]
   },
-  {id: 'nc2h', type: 'helper'},
+  { id: 'nc2h', type: 'helper' },
   {
     'id': 'ef9763f4.0e6728',
     'type': 'OPCUA-IIoT-Connector',
@@ -624,7 +624,7 @@ var testCrawlerWithFilterNS0 = [
   }
 ]
 
-var testCrawlerWithAllBasicFilterTypes = [
+let testCrawlerWithAllBasicFilterTypes = [
   {
     'id': '848ce5aa.9991d',
     'type': 'OPCUA-IIoT-Inject',
@@ -651,7 +651,7 @@ var testCrawlerWithAllBasicFilterTypes = [
       ]
     ]
   },
-  {id: 'ncf1h', type: 'helper'},
+  { id: 'ncf1h', type: 'helper' },
   {
     'id': '99b6cc9a.be7568',
     'type': 'OPCUA-IIoT-Crawler',
@@ -700,7 +700,7 @@ var testCrawlerWithAllBasicFilterTypes = [
       ]
     ]
   },
-  {id: 'ncf2h', type: 'helper'},
+  { id: 'ncf2h', type: 'helper' },
   {
     'id': 'nc4rf1',
     'type': 'OPCUA-IIoT-Response',
@@ -710,7 +710,7 @@ var testCrawlerWithAllBasicFilterTypes = [
     'showErrors': false,
     'wires': [['nc3rf1']]
   },
-  {id: 'nc3rf1', type: 'helper'},
+  { id: 'nc3rf1', type: 'helper' },
   {
     'id': 'ef9763f4.0e6728',
     'type': 'OPCUA-IIoT-Connector',
