@@ -67,7 +67,6 @@ module.exports = function (RED) {
     let sessionStartTimeout = null
     let clientStartTimeout = null
     let disconnectTimeout = null
-    let nodeOPCUAClientPath = coreConnector.core.getNodeOPCUAClientPath()
 
     node.securedCommunication = (node.securityPolicy && node.securityPolicy !== 'None' && node.messageSecurityMode && node.messageSecurityMode !== 'NONE')
 
@@ -78,12 +77,12 @@ module.exports = function (RED) {
     node.bianco.iiot.initCertificatesAndKeys = function () {
       if (node.securedCommunication) {
         if (node.publicCertificateFile === null || node.publicCertificateFile === '') {
-          node.publicCertificateFile = path.join(nodeOPCUAClientPath, '/certificates/client_selfsigned_cert_1024.pem')
+          node.publicCertificateFile = path.join(__dirname, '../../certificates/client_selfsigned_cert_2048.pem')
           coreConnector.detailDebugLog('default key: ' + node.publicCertificateFile)
         }
 
         if (node.privateKeyFile === null || node.privateKeyFile === '') {
-          node.privateKeyFile = path.join(nodeOPCUAClientPath, '/certificates/PKI/own/private/private_key.pem')
+          node.privateKeyFile = path.join(__dirname, '../../certificates/client_key_2048.pem')
           coreConnector.detailDebugLog('default key: ' + node.privateKeyFile)
         }
       } else {
