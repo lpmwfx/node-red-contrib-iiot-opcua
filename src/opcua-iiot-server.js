@@ -87,7 +87,7 @@ module.exports = function (RED) {
 
     node.bianco.iiot.initNewServer()
 
-    node.on('input', function (msg) {
+    node.on('input', async function (msg) {
       if (!node.bianco.iiot.opcuaServer || !node.bianco.iiot.initialized) {
         coreServer.handleServerError(node, new Error('Server Not Ready For Inputs'), msg)
         return
@@ -95,10 +95,10 @@ module.exports = function (RED) {
 
       switch (msg.injectType) {
         case 'ASO':
-          node.bianco.iiot.changeAddressSpace(msg)
+          await node.bianco.iiot.changeAddressSpace(msg)
           break
         case 'CMD':
-          node.bianco.iiot.executeOpcuaCommand(msg)
+          await node.bianco.iiot.executeOpcuaCommand(msg)
           break
         default:
           coreServer.handleServerError(node, new Error('Unknown Inject Type ' + msg.injectType), msg)
@@ -167,7 +167,6 @@ module.exports = function (RED) {
     node.bianco.iiot.closeServer = function (done) {
       coreServer.destructAddressSpace(() => {
         if (node.bianco.iiot.opcuaServer) {
-          node.bianco.iiot.opcuaServer.removeAllListeners()
           node.bianco.iiot.opcuaServer.shutdown(node.delayToClose, () => {
             coreServer.internalDebugLog('Server shutdown is done')
             done()

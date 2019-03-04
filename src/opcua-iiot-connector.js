@@ -144,13 +144,13 @@ module.exports = function (RED) {
       node.bianco.iiot.connectToClient()
     }
 
-    node.bianco.iiot.connectToClient = function () {
+    node.bianco.iiot.connectToClient = async function () {
       if (!coreConnector.checkEndpoint(node)) {
         return
       }
 
       node.bianco.iiot.stateMachine.unlock()
-      node.bianco.iiot.opcuaClient.connect(node.endpoint, function (err) {
+      await node.bianco.iiot.opcuaClient.connect(node.endpoint, function (err) {
         if (coreConnector.core.isInitializedBiancoIIoTNode(node)) {
           if (err) {
             node.bianco.iiot.stateMachine.lock().stopopcua()
@@ -406,7 +406,7 @@ module.exports = function (RED) {
       }
     })
 
-    node.on('close', function (done) {
+    node.on('close', async function (done) {
       if (!coreConnector.core.isInitializedBiancoIIoTNode(node)) {
         done() // if we have a very fast deploy clicking user
       } else {
@@ -417,7 +417,7 @@ module.exports = function (RED) {
         } else {
           coreConnector.detailDebugLog('OPC UA Client Is Active On Close Node With State ' + node.bianco.iiot.stateMachine.getMachineState())
           if (node.bianco.iiot.stateMachine.getMachineState() === 'SESSIONACTIVE') {
-            node.bianco.iiot.closeConnector(() => {
+            await node.bianco.iiot.closeConnector(() => {
               coreConnector.core.resetBiancoNode(node)
               done()
             })

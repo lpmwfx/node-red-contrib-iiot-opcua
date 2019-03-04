@@ -199,14 +199,14 @@ module.exports = function (RED) {
 
     node.bianco.iiot.initNewServer()
 
-    node.on('input', function (msg) {
+    node.on('input', async function (msg) {
       if (!node.bianco.iiot.opcuaServer || !node.bianco.iiot.initialized) {
         coreServer.handleServerError(node, new Error('Server Not Ready For Inputs'), msg)
         return
       }
 
       if (msg.injectType === 'CMD') {
-        node.bianco.iiot.executeOpcuaCommand(msg)
+        await node.bianco.iiot.executeOpcuaCommand(msg)
       } else {
         coreServer.handleServerError(node, new Error('Unknown Flex Inject Type ' + msg.injectType), msg)
       }
@@ -263,7 +263,6 @@ module.exports = function (RED) {
       }
 
       if (node.bianco.iiot.opcuaServer) {
-        node.bianco.iiot.opcuaServer.removeAllListeners()
         node.bianco.iiot.opcuaServer.shutdown(node.serverShutdownTimeout, () => {
           coreServer.internalDebugLog('Server shutdown is done')
           done()
